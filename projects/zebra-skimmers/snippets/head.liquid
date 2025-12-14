@@ -1,0 +1,39 @@
+{%- comment -%}
+  Head snippet - meta tags, preconnects, and critical resources
+{%- endcomment -%}
+
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- if settings.favicon -%}
+  <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+{%- endif -%}
+
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+{%- unless settings.font_heading.system? -%}
+  <link rel="preload" as="font" href="{{ settings.font_heading | font_url }}" type="font/woff2" crossorigin>
+{%- endunless -%}
+
+{%- unless settings.font_body.system? -%}
+  <link rel="preload" as="font" href="{{ settings.font_body | font_url }}" type="font/woff2" crossorigin>
+{%- endunless -%}
+
+{%- if template.name == 'product' -%}
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="{{ product.title | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+  <meta property="og:description" content="{{ product.description | strip_html | truncate: 200 | escape }}">
+  <meta property="product:price:amount" content="{{ product.price | money_without_currency }}">
+  <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+{%- else -%}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {%- if settings.share_image -%}
+    <meta property="og:image" content="{{ settings.share_image | image_url: width: 1200 }}">
+  {%- endif -%}
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">

@@ -1,0 +1,424 @@
+{
+  "name": "Landing: Warm Artisan",
+  "slug": "landing-warm-artisan",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/landing-warm-artisan.png",
+  "settings": [
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Hero image"
+    },
+    {
+      "id": "hero_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Handcrafted with love"
+    },
+    {
+      "id": "hero_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Artisan Ceramics for Everyday Living"
+    },
+    {
+      "id": "hero_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Each piece is carefully crafted by hand in our Portland studio, bringing warmth and character to your home."
+    },
+    {
+      "id": "hero_button_label",
+      "type": "text",
+      "label": "Primary button label",
+      "default": "Shop Collection"
+    },
+    {
+      "id": "hero_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "hero_secondary_label",
+      "type": "text",
+      "label": "Secondary button label",
+      "default": "Our Story"
+    },
+    {
+      "id": "hero_secondary_link",
+      "type": "url",
+      "label": "Secondary button link"
+    },
+    {
+      "id": "show_story",
+      "type": "checkbox",
+      "label": "Show story section",
+      "default": true
+    },
+    {
+      "id": "story_image",
+      "type": "image_picker",
+      "label": "Story image"
+    },
+    {
+      "id": "story_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Our Story"
+    },
+    {
+      "id": "story_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Where Every Piece Tells a Story"
+    },
+    {
+      "id": "story_text",
+      "type": "richtext",
+      "label": "Story text",
+      "default": "<p>What started as a small passion project in my garage has grown into something I never imagined. Each piece that leaves our studio carries a bit of our heart with it.</p><p>We believe that everyday objects should bring joy. That's why we spend countless hours perfecting each glaze, each curve, each handle—so that your morning coffee becomes a moment of beauty.</p>"
+    },
+    {
+      "id": "story_signature",
+      "type": "text",
+      "label": "Signature",
+      "default": "Sarah, Founder"
+    },
+    {
+      "id": "show_products",
+      "type": "checkbox",
+      "label": "Show products section",
+      "default": true
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "id": "products_limit",
+      "type": "range",
+      "label": "Products to show",
+      "default": 6
+    },
+    {
+      "id": "products_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Shop"
+    },
+    {
+      "id": "products_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Thoughtfully Made"
+    },
+    {
+      "id": "products_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Browse our collection of handcrafted ceramics, each one unique and made with care."
+    },
+    {
+      "id": "products_button_label",
+      "type": "text",
+      "label": "Button label",
+      "default": "View All Products"
+    },
+    {
+      "id": "show_process",
+      "type": "checkbox",
+      "label": "Show process section",
+      "default": true
+    },
+    {
+      "id": "process_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Our Process"
+    },
+    {
+      "id": "process_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Made with Intention"
+    },
+    {
+      "id": "show_values",
+      "type": "checkbox",
+      "label": "Show values section",
+      "default": true
+    },
+    {
+      "id": "show_testimonials",
+      "type": "checkbox",
+      "label": "Show testimonials",
+      "default": true
+    },
+    {
+      "id": "testimonials_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Kind Words"
+    },
+    {
+      "id": "testimonials_title",
+      "type": "text",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "id": "show_instagram",
+      "type": "checkbox",
+      "label": "Show Instagram section",
+      "default": true
+    },
+    {
+      "id": "instagram_handle",
+      "type": "text",
+      "label": "Instagram handle",
+      "default": "yourbrand"
+    },
+    {
+      "id": "instagram_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Follow Along"
+    },
+    {
+      "id": "instagram_link",
+      "type": "url",
+      "label": "Instagram profile link"
+    },
+    {
+      "id": "show_newsletter",
+      "type": "checkbox",
+      "label": "Show newsletter",
+      "default": true
+    },
+    {
+      "id": "newsletter_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Join the Family"
+    },
+    {
+      "id": "newsletter_text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "Be the first to know about new pieces, studio updates, and the stories behind our work."
+    },
+    {
+      "id": "newsletter_placeholder",
+      "type": "text",
+      "label": "Input placeholder",
+      "default": "Your email address"
+    },
+    {
+      "id": "newsletter_button",
+      "type": "text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "id": "newsletter_note",
+      "type": "text",
+      "label": "Note text",
+      "default": "We respect your inbox. Unsubscribe anytime."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "process_step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "id": "text",
+          "type": "textarea",
+          "label": "Description",
+          "default": "Description of this step in the process."
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "heart"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Value Title"
+        },
+        {
+          "id": "text",
+          "type": "textarea",
+          "label": "Description",
+          "default": "Description of this value."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Name",
+          "default": "Customer Name"
+        },
+        {
+          "id": "location",
+          "type": "text",
+          "label": "Location",
+          "default": "Portland, OR"
+        },
+        {
+          "id": "quote",
+          "type": "textarea",
+          "label": "Quote",
+          "default": "These pieces have become treasured parts of my daily routine."
+        }
+      ]
+    },
+    {
+      "type": "instagram_image",
+      "name": "Instagram Image",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Landing: Warm Artisan",
+      "blocks": [
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Sourced",
+            "text": "We source only the finest clays and materials from local suppliers who share our values."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Shaped",
+            "text": "Each piece is thrown on the wheel or hand-built with careful attention to form and function."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Glazed",
+            "text": "Our signature glazes are mixed in-house using recipes developed over years of experimentation."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Fired",
+            "text": "Multiple firings in our kilns bring out the unique character of each piece."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "hand",
+            "title": "Handcrafted",
+            "text": "Every piece is made by hand in our studio—no two are exactly alike."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "leaf",
+            "title": "Sustainable",
+            "text": "We use eco-friendly materials and practices in everything we do."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "title": "Made with Love",
+            "text": "Each piece carries the care and intention of its maker."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "home",
+            "title": "Built to Last",
+            "text": "Quality craftsmanship means these pieces will be cherished for generations."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Emma S.",
+            "location": "Seattle, WA",
+            "quote": "These mugs have completely transformed my morning routine. Each sip feels special."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Michael R.",
+            "location": "Denver, CO",
+            "quote": "Bought the serving bowl for my wife's birthday. She teared up when she opened it. That says everything."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jenny L.",
+            "location": "San Francisco, CA",
+            "quote": "My morning coffee ritual has become something special thanks to these pieces. Worth every penny."
+          }
+        },
+        {
+          "type": "instagram_image"
+        },
+        {
+          "type": "instagram_image"
+        },
+        {
+          "type": "instagram_image"
+        },
+        {
+          "type": "instagram_image"
+        },
+        {
+          "type": "instagram_image"
+        },
+        {
+          "type": "instagram_image"
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/landing-warm-artisan.liquid"
+  }
+}

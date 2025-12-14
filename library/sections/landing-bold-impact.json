@@ -1,0 +1,424 @@
+{
+  "name": "Landing: Bold Impact",
+  "slug": "landing-bold-impact",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/landing-bold-impact.png",
+  "settings": [
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Hero background image"
+    },
+    {
+      "id": "hero_badge",
+      "type": "text",
+      "label": "Badge text",
+      "default": "New Collection"
+    },
+    {
+      "id": "hero_title",
+      "type": "text",
+      "label": "Title",
+      "default": "PUSH YOUR LIMITS"
+    },
+    {
+      "id": "hero_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Premium performance gear engineered for athletes who refuse to settle."
+    },
+    {
+      "id": "hero_button_label",
+      "type": "text",
+      "label": "Primary button label",
+      "default": "Shop Now"
+    },
+    {
+      "id": "hero_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "hero_secondary_label",
+      "type": "text",
+      "label": "Secondary button label",
+      "default": "View Lookbook"
+    },
+    {
+      "id": "hero_secondary_link",
+      "type": "url",
+      "label": "Secondary button link"
+    },
+    {
+      "id": "show_hero_stats",
+      "type": "checkbox",
+      "label": "Show hero stats",
+      "default": true
+    },
+    {
+      "id": "show_categories",
+      "type": "checkbox",
+      "label": "Show categories section",
+      "default": true
+    },
+    {
+      "id": "categories_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Collections"
+    },
+    {
+      "id": "categories_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Shop by Sport"
+    },
+    {
+      "id": "show_featured_product",
+      "type": "checkbox",
+      "label": "Show featured product",
+      "default": true
+    },
+    {
+      "id": "featured_product",
+      "type": "product",
+      "label": "Featured product"
+    },
+    {
+      "id": "featured_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Featured"
+    },
+    {
+      "id": "show_products",
+      "type": "checkbox",
+      "label": "Show products section",
+      "default": true
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "id": "products_limit",
+      "type": "range",
+      "label": "Products to show",
+      "default": 8
+    },
+    {
+      "id": "products_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Best Sellers"
+    },
+    {
+      "id": "products_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Top Picks"
+    },
+    {
+      "id": "products_button_label",
+      "type": "text",
+      "label": "Button label",
+      "default": "View All Products"
+    },
+    {
+      "id": "show_stats_banner",
+      "type": "checkbox",
+      "label": "Show stats banner",
+      "default": true
+    },
+    {
+      "id": "show_testimonials",
+      "type": "checkbox",
+      "label": "Show testimonials",
+      "default": true
+    },
+    {
+      "id": "testimonials_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Reviews"
+    },
+    {
+      "id": "testimonials_title",
+      "type": "text",
+      "label": "Title",
+      "default": "What Athletes Say"
+    },
+    {
+      "id": "show_newsletter",
+      "type": "checkbox",
+      "label": "Show newsletter",
+      "default": true
+    },
+    {
+      "id": "newsletter_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Join the Team"
+    },
+    {
+      "id": "newsletter_text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "Get exclusive drops, training tips, and 15% off your first order."
+    },
+    {
+      "id": "newsletter_placeholder",
+      "type": "text",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "id": "newsletter_button",
+      "type": "text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "id": "newsletter_note",
+      "type": "text",
+      "label": "Note text",
+      "default": "No spam. Unsubscribe anytime."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_stat",
+      "name": "Hero Stat",
+      "settings": [
+        {
+          "id": "value",
+          "type": "text",
+          "label": "Value",
+          "default": "50K+"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Athletes"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Category Block",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Running"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "product_feature",
+      "name": "Product Feature",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Feature text",
+          "default": "Lightweight construction"
+        }
+      ]
+    },
+    {
+      "type": "banner_stat",
+      "name": "Banner Stat",
+      "settings": [
+        {
+          "id": "value",
+          "type": "text",
+          "label": "Value",
+          "default": "10M+"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Products Sold"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "id": "avatar",
+          "type": "image_picker",
+          "label": "Avatar"
+        },
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Name",
+          "default": "Alex Johnson"
+        },
+        {
+          "id": "sport",
+          "type": "text",
+          "label": "Sport/Activity",
+          "default": "Marathon Runner"
+        },
+        {
+          "id": "quote",
+          "type": "textarea",
+          "label": "Quote",
+          "default": "Best gear I've ever used. Period."
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Landing: Bold Impact",
+      "blocks": [
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "50K+",
+            "label": "Athletes"
+          }
+        },
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "4.9",
+            "label": "Rating"
+          }
+        },
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "100%",
+            "label": "Performance"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Running"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Training"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Basketball"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Soccer"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Responsive cushioning technology"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Breathable mesh upper"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Superior grip outsole"
+          }
+        },
+        {
+          "type": "product_feature",
+          "settings": {
+            "text": "Lightweight at only 8.5oz"
+          }
+        },
+        {
+          "type": "banner_stat",
+          "settings": {
+            "value": "10M+",
+            "label": "Products Sold"
+          }
+        },
+        {
+          "type": "banner_stat",
+          "settings": {
+            "value": "500+",
+            "label": "Pro Athletes"
+          }
+        },
+        {
+          "type": "banner_stat",
+          "settings": {
+            "value": "50",
+            "label": "Countries"
+          }
+        },
+        {
+          "type": "banner_stat",
+          "settings": {
+            "value": "24/7",
+            "label": "Support"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Marcus Williams",
+            "sport": "Professional Basketball",
+            "quote": "The support and responsiveness are unmatched. These are the only shoes I trust on the court."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Chen",
+            "sport": "Marathon Runner",
+            "quote": "Ran my PR wearing these. The cushioning kept me fresh through mile 26."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jake Rodriguez",
+            "sport": "CrossFit Athlete",
+            "quote": "Finally a shoe that can handle everything from box jumps to rope climbs."
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/landing-bold-impact.liquid"
+  }
+}

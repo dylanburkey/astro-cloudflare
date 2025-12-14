@@ -1,0 +1,194 @@
+{
+  "name": "FAQ",
+  "slug": "faq",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/faq.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "id": "description",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "center_header",
+      "type": "checkbox",
+      "label": "Center header",
+      "default": true
+    },
+    {
+      "id": "display_mode",
+      "type": "select",
+      "label": "Display mode",
+      "default": "accordion"
+    },
+    {
+      "id": "show_search",
+      "type": "checkbox",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "id": "search_placeholder",
+      "type": "text",
+      "label": "Search placeholder",
+      "default": "Search FAQs..."
+    },
+    {
+      "id": "show_categories",
+      "type": "checkbox",
+      "label": "Show category filters",
+      "default": true,
+      "info": "Categories are derived from FAQ item settings"
+    },
+    {
+      "id": "no_results_text",
+      "type": "text",
+      "label": "No results text",
+      "default": "No FAQs found matching your search."
+    },
+    {
+      "id": "show_contact_cta",
+      "type": "checkbox",
+      "label": "Show contact CTA",
+      "default": true
+    },
+    {
+      "id": "cta_text",
+      "type": "text",
+      "label": "CTA text",
+      "default": "Can't find what you're looking for?"
+    },
+    {
+      "id": "cta_button_text",
+      "type": "text",
+      "label": "Button text",
+      "default": "Contact Us"
+    },
+    {
+      "id": "cta_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "accent_color",
+      "type": "color",
+      "label": "Accent color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "id": "hover_background",
+      "type": "color",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "id": "active_background",
+      "type": "color",
+      "label": "Active background",
+      "default": "rgba(51, 79, 180, 0.05)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "id": "category",
+          "type": "text",
+          "label": "Category"
+        },
+        {
+          "id": "question",
+          "type": "text",
+          "label": "Question",
+          "default": "What is your question?"
+        },
+        {
+          "id": "answer",
+          "type": "richtext",
+          "label": "Answer",
+          "default": "<p>Provide a detailed answer to the question here.</p>"
+        },
+        {
+          "id": "link_url",
+          "type": "url",
+          "label": "Learn more link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "id": "related_product",
+          "type": "product",
+          "label": "Related product"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Shipping",
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping typically takes 5-7 business days. Express shipping is available for 2-3 business day delivery.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Shipping",
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes, we ship to over 50 countries worldwide. International shipping times vary by destination.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Returns",
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy for all unused items in their original packaging. Simply contact our support team to initiate a return.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Products",
+            "question": "Are your products covered by warranty?",
+            "answer": "<p>All our products come with a 1-year manufacturer warranty covering defects in materials and workmanship.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/faq.liquid"
+  }
+}

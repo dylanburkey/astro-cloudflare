@@ -1,8 +1,9 @@
 {
-  "name": "Hero Banner",
+  "name": "Hero banner",
   "slug": "hero",
-  "description": "A full-width hero section with image background, heading, and CTA",
+  "description": "section",
   "category": "hero",
+  "previewImage": "/previews/sections/hero.png",
   "settings": [
     {
       "id": "image",
@@ -10,57 +11,233 @@
       "label": "Background image"
     },
     {
-      "id": "image_overlay_opacity",
-      "type": "range",
-      "label": "Image overlay opacity",
-      "default": 40,
-      "info": "0 is transparent, 100 is opaque"
-    },
-    {
-      "id": "heading",
-      "type": "text",
-      "label": "Heading",
-      "default": "Welcome to our store"
-    },
-    {
-      "id": "subheading",
-      "type": "richtext",
-      "label": "Subheading"
-    },
-    {
-      "id": "button_label",
-      "type": "text",
-      "label": "Button label",
-      "default": "Shop now"
-    },
-    {
-      "id": "button_link",
-      "type": "url",
-      "label": "Button link"
+      "id": "video",
+      "type": "video",
+      "label": "Background video",
+      "info": "Video will override background image if both are set"
     },
     {
       "id": "height",
       "type": "select",
       "label": "Section height",
-      "default": "medium",
-      "info": "Height of the hero section"
+      "default": "80vh"
     },
     {
-      "id": "content_alignment",
+      "id": "content_width",
+      "type": "range",
+      "label": "Content width",
+      "default": 60
+    },
+    {
+      "id": "horizontal_position",
       "type": "select",
-      "label": "Content alignment",
+      "label": "Horizontal position",
       "default": "center"
+    },
+    {
+      "id": "vertical_position",
+      "type": "select",
+      "label": "Vertical position",
+      "default": "center"
+    },
+    {
+      "id": "text_alignment",
+      "type": "select",
+      "label": "Text alignment",
+      "default": "center"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "overlay_color",
+      "type": "color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "id": "overlay_opacity",
+      "type": "range",
+      "label": "Overlay opacity",
+      "default": 40
+    },
+    {
+      "id": "enable_gradient",
+      "type": "checkbox",
+      "label": "Enable gradient overlay",
+      "default": false,
+      "info": "Replaces the solid overlay with a gradient"
+    },
+    {
+      "id": "gradient_color_start",
+      "type": "color",
+      "label": "Gradient start color",
+      "default": "#000000"
+    },
+    {
+      "id": "gradient_color_end",
+      "type": "color",
+      "label": "Gradient end color",
+      "default": "#00000000"
+    },
+    {
+      "id": "gradient_direction",
+      "type": "range",
+      "label": "Gradient direction",
+      "default": 180,
+      "info": "0° = top to bottom, 90° = left to right"
+    },
+    {
+      "id": "gradient_opacity",
+      "type": "range",
+      "label": "Gradient opacity",
+      "default": 70
     }
   ],
-  "blocks": [],
-  "maxBlocks": 0,
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading text",
+          "default": "Welcome to our store"
+        },
+        {
+          "id": "heading_size",
+          "type": "range",
+          "label": "Heading size (desktop)",
+          "default": 56
+        },
+        {
+          "id": "heading_size_mobile",
+          "type": "range",
+          "label": "Heading size (mobile)",
+          "default": 36
+        },
+        {
+          "id": "heading_weight",
+          "type": "select",
+          "label": "Font weight",
+          "default": "700"
+        },
+        {
+          "id": "heading_transform",
+          "type": "select",
+          "label": "Text transform",
+          "default": "none"
+        },
+        {
+          "id": "heading_letter_spacing",
+          "type": "range",
+          "label": "Letter spacing",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "subheading",
+          "type": "textarea",
+          "label": "Subheading text",
+          "default": "Discover our latest collection of premium products designed for professionals."
+        },
+        {
+          "id": "subheading_size",
+          "type": "range",
+          "label": "Subheading size (desktop)",
+          "default": 20
+        },
+        {
+          "id": "subheading_size_mobile",
+          "type": "range",
+          "label": "Subheading size (mobile)",
+          "default": 16
+        },
+        {
+          "id": "subheading_weight",
+          "type": "select",
+          "label": "Font weight",
+          "default": "400"
+        },
+        {
+          "id": "subheading_max_width",
+          "type": "range",
+          "label": "Maximum width",
+          "default": 55
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "button_label_1",
+          "type": "text",
+          "label": "Button label",
+          "default": "Shop now"
+        },
+        {
+          "id": "button_link_1",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "button_style_1",
+          "type": "select",
+          "label": "Button style",
+          "default": "primary"
+        },
+        {
+          "id": "button_label_2",
+          "type": "text",
+          "label": "Button label"
+        },
+        {
+          "id": "button_link_2",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "button_style_2",
+          "type": "select",
+          "label": "Button style",
+          "default": "outline-light"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
   "presets": [
     {
-      "name": "Hero Banner",
-      "settings": {
-        "heading": "Welcome to our store",
-        "button_label": "Shop now"
-      }
+      "name": "Hero banner",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "subheading"
+        },
+        {
+          "type": "buttons"
+        }
+      ]
     }
-  ]
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/hero.liquid"
+  }
 }

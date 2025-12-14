@@ -1,0 +1,86 @@
+{
+  "name": "AI Search",
+  "slug": "ai-search",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/ai-search.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Find The Right Gear"
+    },
+    {
+      "id": "placeholder",
+      "type": "text",
+      "label": "Search placeholder",
+      "default": "Ask AI: 'Which welder is best for aluminum?'"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button label",
+      "default": "Search"
+    },
+    {
+      "id": "show_suggestions",
+      "type": "checkbox",
+      "label": "Show search suggestions",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "suggestion",
+      "name": "Search suggestion",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "MIG Welders"
+        },
+        {
+          "id": "query",
+          "type": "text",
+          "label": "Search query",
+          "default": "MIG welder"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "AI Search",
+      "blocks": [
+        {
+          "type": "suggestion",
+          "settings": {
+            "label": "MIG Welders",
+            "query": "MIG welder"
+          }
+        },
+        {
+          "type": "suggestion",
+          "settings": {
+            "label": "TIG Welders",
+            "query": "TIG welder"
+          }
+        },
+        {
+          "type": "suggestion",
+          "settings": {
+            "label": "Safety Gear",
+            "query": "safety"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/ai-search.liquid"
+  }
+}

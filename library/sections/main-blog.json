@@ -1,0 +1,15 @@
+{
+  "name": "Blog",
+  "slug": "main-blog",
+  "description": "Blog section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-blog.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-blog.liquid"
+  }
+}

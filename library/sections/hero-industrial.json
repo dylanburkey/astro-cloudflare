@@ -1,0 +1,60 @@
+{
+  "name": "Hero Industrial",
+  "slug": "hero-industrial",
+  "description": "section",
+  "category": "hero",
+  "previewImage": "/previews/sections/hero-industrial.png",
+  "settings": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+      "id": "overlay_opacity",
+      "type": "range",
+      "label": "Overlay opacity",
+      "default": 60
+    },
+    {
+      "id": "height",
+      "type": "range",
+      "label": "Section height",
+      "default": 600
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Precision Welding Systems"
+    },
+    {
+      "id": "text",
+      "type": "richtext",
+      "label": "Text",
+      "default": "<p>Industry-leading technology for the toughest jobs. Engineered for performance and durability in the field.</p>"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button label",
+      "default": "Explore Equipment"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Hero Industrial"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/hero-industrial.liquid"
+  }
+}

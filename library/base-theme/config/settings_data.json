@@ -1,0 +1,42 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_primary": "#000000",
+      "color_secondary": "#666666",
+      "color_text": "#1a1a1a",
+      "color_text_secondary": "#6b7280",
+      "color_background": "#ffffff",
+      "color_background_secondary": "#f5f5f5",
+      "color_border": "#e5e5e5",
+      "color_button_background": "#000000",
+      "color_button_text": "#ffffff",
+      "color_success": "#16a34a",
+      "color_warning": "#f59e0b",
+      "color_error": "#dc2626",
+      "font_heading": "assistant_n7",
+      "font_heading_scale": 100,
+      "font_body": "assistant_n4",
+      "font_body_scale": 100,
+      "page_width": 1200,
+      "spacing_sections": 48,
+      "grid_gap": 24,
+      "button_border_radius": 4,
+      "input_border_radius": 4,
+      "card_border_radius": 8,
+      "logo_width": 120,
+      "cart_type": "drawer",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {}
+        }
+      },
+      "content_for_index": []
+    }
+  }
+}

@@ -1,25 +1,25 @@
 ---
 import Dashboard from '../../../layouts/Dashboard.astro';
+import { getProject } from '../../../lib/project/create';
 import { getCollection } from 'astro:content';
 
-export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
-    params: { project: project.data.slug },
-    props: { project },
-  }));
+const { project: projectSlug } = Astro.params;
+
+const project = projectSlug ? await getProject(projectSlug, Astro.locals) : null;
+
+if (!project) {
+  return Astro.redirect('/projects');
 }
 
-const { project } = Astro.props;
 const sections = await getCollection('sections');
 const blocks = await getCollection('blocks');
 
 // Filter to only sections/blocks used in this project
-const projectSections = sections.filter(s => project.data.sections.includes(s.data.slug));
-const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slug));
+const projectSections = sections.filter(s => project.sections.includes(s.data.slug));
+const projectBlocks = blocks.filter(b => project.blocks.includes(b.data.slug));
 ---
 
-<Dashboard title={project.data.name} activeNav="projects">
+<Dashboard title={project.name} activeNav="projects">
   <div class="mb-6">
     <a href="/projects" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,25 +31,28 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
     <div class="flex items-start justify-between">
       <div>
         <div class="flex items-center gap-3 mb-2">
-          <h1 class="text-2xl font-bold text-gray-900">{project.data.name}</h1>
+          <h1 class="text-2xl font-bold text-gray-900">{project.name}</h1>
           <span class:list={[
             'px-2 py-1 text-xs font-medium rounded-full',
-            project.data.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
-            project.data.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
+            project.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
+            project.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
             'bg-gray-100 text-gray-700'
           ]}>
-            {project.data.status}
+            {project.status}
           </span>
         </div>
-        <p class="text-gray-600">{project.data.description || 'No description'}</p>
+        <p class="text-gray-600">{project.description || 'No description'}</p>
       </div>
       <div class="flex gap-2">
-        <button class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-          Edit
-        </button>
-        <button class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
+        <a
+          href={`/api/projects/export?project=${project.slug}`}
+          class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
           Export Theme
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -92,7 +95,7 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
         </div>
         <div>
           <p class="text-sm text-gray-500">Base Theme</p>
-          <p class="text-xl font-bold text-gray-900 capitalize">{project.data.baseTheme}</p>
+          <p class="text-xl font-bold text-gray-900 capitalize">{project.baseTheme}</p>
         </div>
       </div>
     </div>
@@ -101,17 +104,28 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <div class="bg-white rounded-xl shadow-sm border border-gray-200">
       <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-gray-900">Sections</h2>
-        <button class="text-sm text-emerald-600 hover:text-emerald-700 font-medium">Add Section</button>
+        <h2 class="text-lg font-semibold text-gray-900">Sections ({projectSections.length})</h2>
+        <a href="/library/sections" class="text-sm text-emerald-600 hover:text-emerald-700 font-medium inline-flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add Section
+        </a>
       </div>
       <div class="divide-y divide-gray-100">
         {projectSections.length === 0 ? (
           <div class="p-6 text-center text-gray-500">
-            <p>No sections added yet.</p>
+            <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+            </svg>
+            <p class="mb-2">No sections added yet.</p>
+            <a href="/library/sections" class="text-emerald-600 hover:text-emerald-700 text-sm font-medium">
+              Browse library
+            </a>
           </div>
         ) : (
           projectSections.map((section) => (
-            <div class="px-6 py-4 flex items-center justify-between hover:bg-gray-50">
+            <div class="px-6 py-4 flex items-center justify-between hover:bg-gray-50 group">
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-purple-100 rounded flex items-center justify-center">
                   <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,12 +134,22 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
                 </div>
                 <div>
                   <h3 class="font-medium text-gray-900">{section.data.name}</h3>
-                  <p class="text-sm text-gray-500">{section.data.category}</p>
+                  <p class="text-sm text-gray-500 capitalize">{section.data.category}</p>
                 </div>
               </div>
-              <a href={`/library/sections/${section.data.slug}`} class="text-sm text-gray-400 hover:text-gray-600">
-                View
-              </a>
+              <div class="flex items-center gap-2">
+                <a href={`/library/sections/${section.data.slug}`} class="text-sm text-gray-400 hover:text-gray-600">
+                  View
+                </a>
+                <span class="text-gray-300">|</span>
+                <button
+                  data-section-slug={section.data.slug}
+                  data-section-name={section.data.name}
+                  class="save-variant-btn text-sm text-purple-500 hover:text-purple-700"
+                >
+                  Save Variant
+                </button>
+              </div>
             </div>
           ))
         )}
@@ -134,17 +158,28 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-200">
       <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-gray-900">Blocks</h2>
-        <button class="text-sm text-emerald-600 hover:text-emerald-700 font-medium">Add Block</button>
+        <h2 class="text-lg font-semibold text-gray-900">Blocks ({projectBlocks.length})</h2>
+        <a href="/library/blocks" class="text-sm text-emerald-600 hover:text-emerald-700 font-medium inline-flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add Block
+        </a>
       </div>
       <div class="divide-y divide-gray-100">
         {projectBlocks.length === 0 ? (
           <div class="p-6 text-center text-gray-500">
-            <p>No blocks added yet.</p>
+            <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4" />
+            </svg>
+            <p class="mb-2">No blocks added yet.</p>
+            <a href="/library/blocks" class="text-emerald-600 hover:text-emerald-700 text-sm font-medium">
+              Browse library
+            </a>
           </div>
         ) : (
           projectBlocks.map((block) => (
-            <div class="px-6 py-4 flex items-center justify-between hover:bg-gray-50">
+            <div class="px-6 py-4 flex items-center justify-between hover:bg-gray-50 group">
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-orange-100 rounded flex items-center justify-center">
                   <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,12 +188,14 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
                 </div>
                 <div>
                   <h3 class="font-medium text-gray-900">{block.data.name}</h3>
-                  <p class="text-sm text-gray-500">{block.data.category}</p>
+                  <p class="text-sm text-gray-500 capitalize">{block.data.category}</p>
                 </div>
               </div>
-              <a href={`/library/blocks/${block.data.slug}`} class="text-sm text-gray-400 hover:text-gray-600">
-                View
-              </a>
+              <div class="flex items-center gap-3">
+                <a href={`/library/blocks/${block.data.slug}`} class="text-sm text-gray-400 hover:text-gray-600">
+                  View
+                </a>
+              </div>
             </div>
           ))
         )}
@@ -173,20 +210,201 @@ const projectBlocks = blocks.filter(b => project.data.blocks.includes(b.data.slu
     <div class="p-6 grid grid-cols-2 gap-6">
       <div>
         <label class="text-sm font-medium text-gray-500">Store URL</label>
-        <p class="text-gray-900">{project.data.storeUrl || 'Not configured'}</p>
+        <p class="text-gray-900">{project.storeUrl || 'Not configured'}</p>
       </div>
       <div>
         <label class="text-sm font-medium text-gray-500">Base Theme</label>
-        <p class="text-gray-900 capitalize">{project.data.baseTheme}</p>
+        <p class="text-gray-900 capitalize">{project.baseTheme}</p>
       </div>
       <div>
         <label class="text-sm font-medium text-gray-500">Created</label>
-        <p class="text-gray-900">{new Date(project.data.createdAt).toLocaleDateString()}</p>
+        <p class="text-gray-900">{new Date(project.createdAt).toLocaleDateString()}</p>
       </div>
       <div>
         <label class="text-sm font-medium text-gray-500">Last Updated</label>
-        <p class="text-gray-900">{new Date(project.data.updatedAt).toLocaleDateString()}</p>
+        <p class="text-gray-900">{new Date(project.updatedAt).toLocaleDateString()}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Save Variant Modal -->
+  <div id="variant-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-xl max-w-md w-full mx-4">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900">Save as Library Variant</h3>
+      </div>
+      <form id="variant-form" class="p-6">
+        <input type="hidden" id="variant-section-slug" name="sectionSlug" />
+        <div class="mb-4">
+          <label for="variant-name" class="block text-sm font-medium text-gray-700 mb-1">
+            Variant Name
+          </label>
+          <input
+            type="text"
+            id="variant-name"
+            name="variantName"
+            required
+            placeholder="e.g., Dark Theme, Minimal, Large Cards"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          />
+          <p class="mt-1 text-sm text-gray-500">
+            This will be appended to the section name
+          </p>
+        </div>
+        <div class="mb-6">
+          <label for="variant-description" class="block text-sm font-medium text-gray-700 mb-1">
+            Description (optional)
+          </label>
+          <textarea
+            id="variant-description"
+            name="description"
+            rows="2"
+            placeholder="Describe what makes this variant unique..."
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+          ></textarea>
+        </div>
+        <div class="flex gap-3 justify-end">
+          <button
+            type="button"
+            id="cancel-variant"
+            class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors"
+          >
+            Save Variant
+          </button>
+        </div>
+      </form>
+      <div id="variant-result" class="hidden px-6 pb-6">
+        <div id="variant-success" class="hidden p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+          <div class="flex items-center gap-2 text-emerald-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="font-medium">Variant saved to library!</span>
+          </div>
+          <p id="variant-success-message" class="mt-1 text-sm text-emerald-600"></p>
+        </div>
+        <div id="variant-error" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div class="flex items-center gap-2 text-red-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <span class="font-medium">Failed to save variant</span>
+          </div>
+          <p id="variant-error-message" class="mt-1 text-sm text-red-600"></p>
+        </div>
       </div>
     </div>
   </div>
 </Dashboard>
+
+<script define:vars={{ projectSlug: project.slug }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('variant-modal');
+    const form = document.getElementById('variant-form');
+    const cancelBtn = document.getElementById('cancel-variant');
+    const sectionSlugInput = document.getElementById('variant-section-slug');
+    const variantNameInput = document.getElementById('variant-name');
+    const variantDescInput = document.getElementById('variant-description');
+    const resultDiv = document.getElementById('variant-result');
+    const successDiv = document.getElementById('variant-success');
+    const errorDiv = document.getElementById('variant-error');
+    const successMessage = document.getElementById('variant-success-message');
+    const errorMessage = document.getElementById('variant-error-message');
+
+    // Open modal when Save Variant button is clicked
+    document.querySelectorAll('.save-variant-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sectionSlug = btn.dataset.sectionSlug;
+        const sectionName = btn.dataset.sectionName;
+
+        sectionSlugInput.value = sectionSlug;
+        variantNameInput.value = '';
+        variantDescInput.value = '';
+
+        // Reset result display
+        resultDiv.classList.add('hidden');
+        successDiv.classList.add('hidden');
+        errorDiv.classList.add('hidden');
+        form.classList.remove('hidden');
+
+        modal.classList.remove('hidden');
+        variantNameInput.focus();
+      });
+    });
+
+    // Close modal
+    cancelBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+      }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const sectionSlug = sectionSlugInput.value;
+      const variantName = variantNameInput.value.trim();
+      const description = variantDescInput.value.trim();
+
+      if (!variantName) {
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/projects/promote-variant', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            projectSlug,
+            sectionSlug,
+            variantName,
+            description: description || undefined,
+          }),
+        });
+
+        const data = await response.json();
+
+        form.classList.add('hidden');
+        resultDiv.classList.remove('hidden');
+
+        if (response.ok && data.success) {
+          successDiv.classList.remove('hidden');
+          successMessage.textContent = `Created "${data.variant.name}" variant in the library.`;
+
+          // Auto-close after 3 seconds
+          setTimeout(() => {
+            modal.classList.add('hidden');
+          }, 3000);
+        } else {
+          errorDiv.classList.remove('hidden');
+          errorMessage.textContent = data.error || 'Unknown error occurred';
+        }
+      } catch (err) {
+        form.classList.add('hidden');
+        resultDiv.classList.remove('hidden');
+        errorDiv.classList.remove('hidden');
+        errorMessage.textContent = 'Network error. Please try again.';
+      }
+    });
+  });
+</script>

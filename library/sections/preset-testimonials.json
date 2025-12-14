@@ -1,0 +1,154 @@
+{
+  "name": "Preset: Testimonials",
+  "slug": "preset-testimonials",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/preset-testimonials.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "Customer Stories"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "What Machinists Are Saying"
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description",
+      "default": "Join thousands of machine shops that trust Zebra Skimmers for their oil removal and coolant management needs."
+    },
+    {
+      "id": "show_stats",
+      "type": "checkbox",
+      "label": "Show stats bar",
+      "default": true
+    },
+    {
+      "id": "stat_1_value",
+      "type": "text",
+      "label": "Stat 1 value",
+      "default": "4.9/5"
+    },
+    {
+      "id": "stat_1_label",
+      "type": "text",
+      "label": "Stat 1 label",
+      "default": "Average Rating"
+    },
+    {
+      "id": "stat_2_value",
+      "type": "text",
+      "label": "Stat 2 value",
+      "default": "2,500+"
+    },
+    {
+      "id": "stat_2_label",
+      "type": "text",
+      "label": "Stat 2 label",
+      "default": "Happy Customers"
+    },
+    {
+      "id": "stat_3_value",
+      "type": "text",
+      "label": "Stat 3 value",
+      "default": "98%"
+    },
+    {
+      "id": "stat_3_label",
+      "type": "text",
+      "label": "Stat 3 label",
+      "default": "Would Recommend"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "id": "rating",
+          "type": "range",
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "id": "quote",
+          "type": "textarea",
+          "label": "Quote",
+          "default": "The Dazzle system paid for itself in just 6 months. Our coolant costs are down 45% and our tools are lasting longer than ever."
+        },
+        {
+          "id": "avatar",
+          "type": "image_picker",
+          "label": "Author photo"
+        },
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Author name",
+          "default": "John Smith"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Author title",
+          "default": "Shop Manager"
+        },
+        {
+          "id": "company",
+          "type": "text",
+          "label": "Company",
+          "default": "Precision Machine Works"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The Dazzle system paid for itself in just 6 months. Our coolant costs are down 45% and our tools are lasting longer than ever.",
+            "name": "Mike Richardson",
+            "title": "Shop Manager",
+            "company": "Precision Machine Works"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "We've been using Zebra belt skimmers for over 10 years. They just work. The lifetime warranty isn't just marketing—they actually stand behind it.",
+            "name": "Sarah Chen",
+            "title": "Operations Director",
+            "company": "Chen Manufacturing"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "After trying three other brands, Zebra is the only one that consistently performs in our harsh environment. Worth every penny.",
+            "name": "David Martinez",
+            "title": "Maintenance Lead",
+            "company": "Industrial Dynamics"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-testimonials.liquid"
+  }
+}

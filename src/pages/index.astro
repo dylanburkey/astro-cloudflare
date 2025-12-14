@@ -1,12 +1,13 @@
 ---
 import Dashboard from '../layouts/Dashboard.astro';
 import { getCollection } from 'astro:content';
+import { listProjects } from '../lib/project/create';
 
-const projects = await getCollection('projects');
+const projects = await listProjects(Astro.locals);
 const sections = await getCollection('sections');
 const blocks = await getCollection('blocks');
 
-const activeProjects = projects.filter(p => p.data.status === 'active');
+const activeProjects = projects.filter(p => p.status === 'active');
 ---
 
 <Dashboard title="Dashboard" activeNav="dashboard">
@@ -82,19 +83,19 @@ const activeProjects = projects.filter(p => p.data.status === 'active');
           </div>
         ) : (
           projects.slice(0, 5).map((project) => (
-            <a href={`/projects/${project.data.slug}`} class="block px-6 py-4 hover:bg-gray-50 transition-colors">
+            <a href={`/projects/${project.slug}`} class="block px-6 py-4 hover:bg-gray-50 transition-colors">
               <div class="flex items-center justify-between">
                 <div>
-                  <h3 class="font-medium text-gray-900">{project.data.name}</h3>
-                  <p class="text-sm text-gray-500">{project.data.description || 'No description'}</p>
+                  <h3 class="font-medium text-gray-900">{project.name}</h3>
+                  <p class="text-sm text-gray-500">{project.description || 'No description'}</p>
                 </div>
                 <span class:list={[
                   'px-2 py-1 text-xs font-medium rounded-full',
-                  project.data.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
-                  project.data.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
+                  project.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
+                  project.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
                   'bg-gray-100 text-gray-700'
                 ]}>
-                  {project.data.status}
+                  {project.status}
                 </span>
               </div>
             </a>

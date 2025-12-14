@@ -1,0 +1,72 @@
+---
+import Dashboard from '../../../layouts/Dashboard.astro';
+import { listPresets, getPreset } from '../../../lib/presets/apply';
+
+const presetInfos = await listPresets();
+const presets = await Promise.all(
+  presetInfos.map(async (info) => {
+    const full = await getPreset(info.slug);
+    return { ...info, ...full };
+  })
+);
+---
+
+<Dashboard title="Presets" activeNav="presets">
+  <div class="mb-6">
+    <p class="text-gray-600">Color and typography presets you can apply to your projects.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {presets.map((preset) => (
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div
+          class="h-24 flex items-center justify-center"
+          style={`background-color: ${preset.colors?.background || '#fff'}`}
+        >
+          <div class="flex gap-2">
+            <div
+              class="w-8 h-8 rounded-full shadow-sm"
+              style={`background-color: ${preset.colors?.primary || '#000'}`}
+              title="Primary"
+            ></div>
+            <div
+              class="w-8 h-8 rounded-full shadow-sm"
+              style={`background-color: ${preset.colors?.secondary || '#333'}`}
+              title="Secondary"
+            ></div>
+            <div
+              class="w-8 h-8 rounded-full shadow-sm"
+              style={`background-color: ${preset.colors?.accent || '#666'}`}
+              title="Accent"
+            ></div>
+            <div
+              class="w-8 h-8 rounded-full shadow-sm border"
+              style={`background-color: ${preset.colors?.text || '#000'}`}
+              title="Text"
+            ></div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-900 mb-1">{preset.name}</h3>
+          <p class="text-sm text-gray-500 mb-3">{preset.description}</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">
+              {preset.typography?.heading_font?.replace(/_/g, ' ') || 'Default font'}
+            </span>
+            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">
+              {preset.buttons?.border_radius}px radius
+            </span>
+          </div>
+        </div>
+        <div class="px-4 py-3 bg-gray-50 border-t border-gray-100">
+          <a
+            href={`/library/presets/${preset.slug}`}
+            class="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+          >
+            View Details
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</Dashboard>

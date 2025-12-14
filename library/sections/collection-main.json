@@ -1,0 +1,70 @@
+{
+  "name": "Collection Main",
+  "slug": "collection-main",
+  "description": "section",
+  "category": "collection",
+  "previewImage": "/previews/sections/collection-main.png",
+  "settings": [
+    {
+      "id": "products_per_page",
+      "type": "range",
+      "label": "Products per page",
+      "default": 12
+    },
+    {
+      "id": "show_cta_grid",
+      "type": "checkbox",
+      "label": "Show CTA Grid",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cta_card",
+      "name": "CTA Card",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Size Guide"
+        },
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Collection Main",
+      "blocks": [
+        {
+          "type": "cta_card",
+          "settings": {
+            "heading": "Size Guide"
+          }
+        },
+        {
+          "type": "cta_card",
+          "settings": {
+            "heading": "OSHA Compliance"
+          }
+        },
+        {
+          "type": "cta_card",
+          "settings": {
+            "heading": "Bulk Quotes"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/collection-main.liquid"
+  }
+}

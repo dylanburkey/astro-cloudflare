@@ -1,0 +1,192 @@
+{
+  "name": "Corporate Header",
+  "slug": "corporate-header",
+  "description": "div",
+  "category": "header",
+  "previewImage": "/previews/sections/corporate-header.png",
+  "settings": [
+    {
+      "id": "logo",
+      "type": "image_picker",
+      "label": "Logo image"
+    },
+    {
+      "id": "logo_width",
+      "type": "range",
+      "label": "Logo width",
+      "default": 150
+    },
+    {
+      "id": "logo_svg",
+      "type": "html",
+      "label": "Logo SVG (optional)",
+      "info": "Paste SVG code for vector logo"
+    },
+    {
+      "id": "sticky",
+      "type": "checkbox",
+      "label": "Sticky header",
+      "default": true
+    },
+    {
+      "id": "show_search",
+      "type": "checkbox",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "id": "search_placeholder",
+      "type": "text",
+      "label": "Search placeholder",
+      "default": "Search..."
+    },
+    {
+      "id": "bg_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "id": "hover_color",
+      "type": "color",
+      "label": "Hover color",
+      "default": "#0056b3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item",
+      "name": "Navigation Item",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Link"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "new_tab",
+          "type": "checkbox",
+          "label": "Open in new tab",
+          "default": false
+        },
+        {
+          "id": "submenu_1_label",
+          "type": "text",
+          "label": "Submenu 1 label"
+        },
+        {
+          "id": "submenu_1_link",
+          "type": "url",
+          "label": "Submenu 1 link"
+        },
+        {
+          "id": "submenu_2_label",
+          "type": "text",
+          "label": "Submenu 2 label"
+        },
+        {
+          "id": "submenu_2_link",
+          "type": "url",
+          "label": "Submenu 2 link"
+        },
+        {
+          "id": "submenu_3_label",
+          "type": "text",
+          "label": "Submenu 3 label"
+        },
+        {
+          "id": "submenu_3_link",
+          "type": "url",
+          "label": "Submenu 3 link"
+        },
+        {
+          "id": "submenu_4_label",
+          "type": "text",
+          "label": "Submenu 4 label"
+        },
+        {
+          "id": "submenu_4_link",
+          "type": "url",
+          "label": "Submenu 4 link"
+        },
+        {
+          "id": "submenu_5_label",
+          "type": "text",
+          "label": "Submenu 5 label"
+        },
+        {
+          "id": "submenu_5_link",
+          "type": "url",
+          "label": "Submenu 5 link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Corporate Header",
+      "blocks": [
+        {
+          "type": "nav_item",
+          "settings": {
+            "label": "About",
+            "submenu_1_label": "Our Story",
+            "submenu_1_link": "/pages/about",
+            "submenu_2_label": "Leadership",
+            "submenu_2_link": "/pages/team"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "label": "Products",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "label": "Solutions",
+            "submenu_1_label": "Industrial",
+            "submenu_1_link": "/pages/industrial",
+            "submenu_2_label": "Commercial",
+            "submenu_2_link": "/pages/commercial",
+            "submenu_3_label": "Residential",
+            "submenu_3_link": "/pages/residential"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "label": "Careers",
+            "link": "/pages/careers"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "label": "Contact",
+            "link": "/pages/contact"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/corporate-header.liquid"
+  }
+}

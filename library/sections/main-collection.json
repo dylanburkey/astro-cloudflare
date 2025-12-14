@@ -1,0 +1,150 @@
+{
+  "name": "Collection",
+  "slug": "main-collection",
+  "description": "Collection section from Forge Industrial theme",
+  "category": "collection",
+  "previewImage": "/previews/sections/main-collection.png",
+  "settings": [
+    {
+      "id": "products_per_page",
+      "type": "range",
+      "label": "Products per page",
+      "default": 16
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns on desktop",
+      "default": 3
+    },
+    {
+      "id": "default_view",
+      "type": "select",
+      "label": "Default view",
+      "default": "grid"
+    },
+    {
+      "id": "enable_filtering",
+      "type": "checkbox",
+      "label": "Enable filtering",
+      "default": true,
+      "info": "Allow customers to filter products by availability, price, and more. [Customize filters](/admin/menus)"
+    },
+    {
+      "id": "enable_sorting",
+      "type": "checkbox",
+      "label": "Enable sorting",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_content",
+      "name": "Content block",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Need Help?"
+        },
+        {
+          "id": "content",
+          "type": "richtext",
+          "label": "Content",
+          "default": "<p>Contact our team for assistance with product selection.</p>"
+        },
+        {
+          "id": "button_label",
+          "type": "text",
+          "label": "Button label",
+          "default": "Contact Us"
+        },
+        {
+          "id": "button_link",
+          "type": "url",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "filter_image",
+      "name": "Image block",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "overlay_text",
+          "type": "text",
+          "label": "Overlay text"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "filter_links",
+      "name": "Links block",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Quick Links"
+        },
+        {
+          "id": "link_1_label",
+          "type": "text",
+          "label": "Link 1 label"
+        },
+        {
+          "id": "link_1_url",
+          "type": "url",
+          "label": "Link 1 URL"
+        },
+        {
+          "id": "link_2_label",
+          "type": "text",
+          "label": "Link 2 label"
+        },
+        {
+          "id": "link_2_url",
+          "type": "url",
+          "label": "Link 2 URL"
+        },
+        {
+          "id": "link_3_label",
+          "type": "text",
+          "label": "Link 3 label"
+        },
+        {
+          "id": "link_3_url",
+          "type": "url",
+          "label": "Link 3 URL"
+        },
+        {
+          "id": "link_4_label",
+          "type": "text",
+          "label": "Link 4 label"
+        },
+        {
+          "id": "link_4_url",
+          "type": "url",
+          "label": "Link 4 URL"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-collection.liquid"
+  }
+}

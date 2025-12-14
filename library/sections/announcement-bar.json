@@ -1,0 +1,55 @@
+{
+  "name": "t:sections.announcement_bar.name",
+  "slug": "announcement-bar",
+  "description": "section-announcement-bar",
+  "category": "header",
+  "previewImage": "/previews/sections/announcement-bar.png",
+  "settings": [
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#121212"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Text",
+          "default": "Welcome to our store"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 5,
+  "presets": [
+    {
+      "name": "t:sections.announcement_bar.name",
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/announcement-bar.liquid"
+  }
+}

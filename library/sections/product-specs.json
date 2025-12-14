@@ -1,0 +1,123 @@
+{
+  "name": "Product Specs",
+  "slug": "product-specs",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/product-specs.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Technical Specifications"
+    },
+    {
+      "id": "open_by_default",
+      "type": "checkbox",
+      "label": "Open by default",
+      "default": true
+    },
+    {
+      "id": "use_metafields",
+      "type": "checkbox",
+      "label": "Show specs from metafields",
+      "default": true,
+      "info": "Display specs stored in product metafields (namespace: specs)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Specification"
+        },
+        {
+          "id": "value",
+          "type": "text",
+          "label": "Value",
+          "default": "Value"
+        },
+        {
+          "id": "use_metafield",
+          "type": "checkbox",
+          "label": "Use metafield value",
+          "default": false
+        },
+        {
+          "id": "metafield_key",
+          "type": "text",
+          "label": "Metafield key"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Section Divider",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Section label"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Product Specs",
+      "blocks": [
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Weight",
+            "value": "2.5 lbs"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Dimensions",
+            "value": "12\" x 8\" x 4\""
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Material",
+            "value": "Steel / Aluminum"
+          }
+        },
+        {
+          "type": "divider",
+          "settings": {
+            "label": "Electrical"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Voltage",
+            "value": "120V AC"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "label": "Power",
+            "value": "500W"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/product-specs.liquid"
+  }
+}

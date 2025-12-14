@@ -1,0 +1,185 @@
+{
+  "name": "Social sharing",
+  "slug": "social-sharing",
+  "description": "section-social-sharing",
+  "category": "content",
+  "previewImage": "/previews/sections/social-sharing.png",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Share this"
+    },
+    {
+      "id": "show_facebook",
+      "type": "checkbox",
+      "label": "Show Facebook",
+      "default": true
+    },
+    {
+      "id": "show_twitter",
+      "type": "checkbox",
+      "label": "Show X (Twitter)",
+      "default": true
+    },
+    {
+      "id": "show_pinterest",
+      "type": "checkbox",
+      "label": "Show Pinterest",
+      "default": true
+    },
+    {
+      "id": "show_linkedin",
+      "type": "checkbox",
+      "label": "Show LinkedIn",
+      "default": false
+    },
+    {
+      "id": "show_email",
+      "type": "checkbox",
+      "label": "Show Email",
+      "default": true
+    },
+    {
+      "id": "show_whatsapp",
+      "type": "checkbox",
+      "label": "Show WhatsApp",
+      "default": false
+    },
+    {
+      "id": "show_copy_link",
+      "type": "checkbox",
+      "label": "Show copy link",
+      "default": true
+    },
+    {
+      "id": "pinterest_image",
+      "type": "image_picker",
+      "label": "Pinterest image",
+      "info": "Used when sharing to Pinterest. Falls back to page image."
+    },
+    {
+      "id": "show_follow_links",
+      "type": "checkbox",
+      "label": "Show follow links",
+      "default": false,
+      "info": "Display links to your social media profiles"
+    },
+    {
+      "id": "follow_title",
+      "type": "text",
+      "label": "Follow section title",
+      "default": "Follow us"
+    },
+    {
+      "id": "facebook_link",
+      "type": "url",
+      "label": "Facebook link override"
+    },
+    {
+      "id": "instagram_link",
+      "type": "url",
+      "label": "Instagram link override"
+    },
+    {
+      "id": "twitter_link",
+      "type": "url",
+      "label": "X (Twitter) link override"
+    },
+    {
+      "id": "youtube_link",
+      "type": "url",
+      "label": "YouTube link override"
+    },
+    {
+      "id": "tiktok_link",
+      "type": "url",
+      "label": "TikTok link override"
+    },
+    {
+      "id": "pinterest_link",
+      "type": "url",
+      "label": "Pinterest link override"
+    },
+    {
+      "id": "linkedin_link",
+      "type": "url",
+      "label": "LinkedIn link override"
+    },
+    {
+      "id": "icon_size",
+      "type": "range",
+      "label": "Icon size",
+      "default": 24
+    },
+    {
+      "id": "icon_padding",
+      "type": "range",
+      "label": "Icon padding",
+      "default": 12
+    },
+    {
+      "id": "icon_spacing",
+      "type": "range",
+      "label": "Spacing between icons",
+      "default": 12
+    },
+    {
+      "id": "icon_border_radius",
+      "type": "range",
+      "label": "Border radius",
+      "default": 50,
+      "info": "50px = circle"
+    },
+    {
+      "id": "icon_color",
+      "type": "color",
+      "label": "Icon color",
+      "default": "#121212"
+    },
+    {
+      "id": "icon_background",
+      "type": "color",
+      "label": "Icon background",
+      "default": "transparent"
+    },
+    {
+      "id": "icon_hover_color",
+      "type": "color",
+      "label": "Icon hover color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "icon_hover_background",
+      "type": "color",
+      "label": "Icon hover background",
+      "default": "#121212"
+    },
+    {
+      "id": "center_icons",
+      "type": "checkbox",
+      "label": "Center icons",
+      "default": false
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Social sharing",
+      "settings": {
+        "title": "Share this",
+        "show_facebook": true,
+        "show_twitter": true,
+        "show_pinterest": true,
+        "show_email": true,
+        "show_copy_link": true
+      }
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/social-sharing.liquid"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "name": "Video gallery",
+  "slug": "video-gallery",
+  "description": "section",
+  "category": "media",
+  "previewImage": "/previews/sections/video-gallery.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Video Gallery"
+    },
+    {
+      "id": "description",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "center_header",
+      "type": "checkbox",
+      "label": "Center header",
+      "default": true
+    },
+    {
+      "id": "layout",
+      "type": "select",
+      "label": "Layout",
+      "default": "grid"
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns (grid layout)",
+      "default": 3
+    },
+    {
+      "id": "show_filters",
+      "type": "checkbox",
+      "label": "Show video type filters",
+      "default": true
+    },
+    {
+      "id": "accent_color",
+      "type": "color",
+      "label": "Accent color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "overlay_color",
+      "type": "color",
+      "label": "Video overlay color",
+      "default": "rgba(0, 0, 0, 0.3)"
+    },
+    {
+      "id": "border_radius",
+      "type": "range",
+      "label": "Card border radius",
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Video Title"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Description"
+        },
+        {
+          "id": "video_type",
+          "type": "select",
+          "label": "Video type",
+          "default": "product-overview"
+        },
+        {
+          "id": "video_url",
+          "type": "url",
+          "label": "Video URL"
+        },
+        {
+          "id": "thumbnail",
+          "type": "image_picker",
+          "label": "Custom thumbnail"
+        },
+        {
+          "id": "duration",
+          "type": "text",
+          "label": "Duration"
+        },
+        {
+          "id": "date",
+          "type": "text",
+          "label": "Publish date"
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Related product"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Video gallery",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "title": "Product Overview",
+            "video_type": "product-overview",
+            "description": "Learn about our flagship product features."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "title": "Unboxing Experience",
+            "video_type": "unboxing",
+            "description": "See what's inside the box."
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "title": "Troubleshooting Guide",
+            "video_type": "troubleshooting",
+            "description": "Common issues and how to solve them."
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/video-gallery.liquid"
+  }
+}

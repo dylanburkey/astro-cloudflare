@@ -1,16 +1,23 @@
 ---
 import Dashboard from '../../../layouts/Dashboard.astro';
 import { getCollection } from 'astro:content';
+import { listProjects } from '../../../lib/project/create';
 
-export async function getStaticPaths() {
-  const blocks = await getCollection('blocks');
-  return blocks.map((block) => ({
-    params: { slug: block.data.slug },
-    props: { block },
-  }));
+const { slug } = Astro.params;
+
+const blocks = await getCollection('blocks');
+const block = blocks.find(b => b.data.slug === slug);
+
+if (!block) {
+  return Astro.redirect('/library/blocks');
 }
 
-const { block } = Astro.props;
+// Get projects from D1
+const projects = await listProjects(Astro.locals);
+
+// Find which projects already have this block
+const projectsWithBlock = projects.filter(p => p.blocks.includes(slug || ''));
+const projectsWithoutBlock = projects.filter(p => !p.blocks.includes(slug || ''));
 
 // Generate Liquid block schema
 function generateBlockSchema(blockData: typeof block.data) {
@@ -41,11 +48,93 @@ const blockSchema = generateBlockSchema(block.data);
         </div>
         <p class="text-gray-600">{block.data.description || 'No description'}</p>
       </div>
-      <button class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
-        Add to Section
-      </button>
+      <div class="relative" id="add-to-project-container">
+        <button
+          id="add-to-project-btn"
+          class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add to Project
+        </button>
+        <div id="project-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+          <div class="p-3 border-b border-gray-100">
+            <p class="text-sm font-medium text-gray-700">Select a project</p>
+          </div>
+          <div class="max-h-64 overflow-y-auto">
+            {projectsWithoutBlock.length === 0 ? (
+              <div class="p-4 text-sm text-gray-500 text-center">
+                {projects.length === 0 ? 'No projects yet' : 'Already added to all projects'}
+              </div>
+            ) : (
+              projectsWithoutBlock.map((project) => (
+                <button
+                  data-project-slug={project.slug}
+                  data-block-slug={slug}
+                  class="add-block-btn w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center justify-between"
+                >
+                  <span class="font-medium text-gray-900">{project.name}</span>
+                  <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                </button>
+              ))
+            )}
+          </div>
+          {projects.length === 0 && (
+            <div class="p-3 border-t border-gray-100">
+              <a href="/projects/new" class="text-sm text-emerald-600 hover:text-emerald-700 font-medium">
+                Create a project first
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    const btn = document.getElementById('add-to-project-btn');
+    const dropdown = document.getElementById('project-dropdown');
+    const container = document.getElementById('add-to-project-container');
+
+    btn?.addEventListener('click', () => {
+      dropdown?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!container?.contains(e.target as Node)) {
+        dropdown?.classList.add('hidden');
+      }
+    });
+
+    document.querySelectorAll('.add-block-btn').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const projectSlug = target.dataset.projectSlug;
+        const blockSlug = target.dataset.blockSlug;
+
+        try {
+          const response = await fetch('/api/projects/add-block', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ projectSlug, blockSlug }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            window.location.reload();
+          } else {
+            alert(data.error || 'Failed to add block');
+          }
+        } catch (error) {
+          alert('Failed to add block');
+        }
+      });
+    });
+  </script>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Settings Panel -->
@@ -104,5 +193,41 @@ const blockSchema = generateBlockSchema(block.data);
   "name": "${block.data.name}"
 }`}</code></pre>
     </div>
+  </div>
+
+  <!-- Usage in Projects -->
+  <div class="mt-6 bg-white rounded-xl shadow-sm border border-gray-200">
+    <div class="px-6 py-4 border-b border-gray-200">
+      <h2 class="text-lg font-semibold text-gray-900">Used in Projects ({projectsWithBlock.length})</h2>
+    </div>
+    {projectsWithBlock.length === 0 ? (
+      <div class="p-6 text-center text-gray-500">
+        <p>Not used in any projects yet.</p>
+      </div>
+    ) : (
+      <div class="divide-y divide-gray-100">
+        {projectsWithBlock.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            class="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-emerald-100 rounded flex items-center justify-center">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900">{project.name}</p>
+                <p class="text-sm text-gray-500">{project.status}</p>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    )}
   </div>
 </Dashboard>

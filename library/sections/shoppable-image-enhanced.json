@@ -1,0 +1,430 @@
+{
+  "name": "Shoppable Image (Enhanced)",
+  "slug": "shoppable-image-enhanced",
+  "description": "section",
+  "category": "media",
+  "previewImage": "/previews/sections/shoppable-image-enhanced.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Shop the Look"
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "hotspot_size",
+      "type": "range",
+      "label": "Hotspot size",
+      "default": 32
+    },
+    {
+      "id": "hotspot_color",
+      "type": "color",
+      "label": "Product hotspot color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "hotspot_pulse_color",
+      "type": "color",
+      "label": "Pulse animation color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "info_hotspot_color",
+      "type": "color",
+      "label": "Info hotspot color",
+      "default": "#10b981"
+    },
+    {
+      "id": "parts_hotspot_color",
+      "type": "color",
+      "label": "Parts hotspot color",
+      "default": "#f59e0b"
+    },
+    {
+      "id": "show_parts_legend",
+      "type": "checkbox",
+      "label": "Show parts legend",
+      "default": true,
+      "info": "Display a sidebar list of all parts"
+    },
+    {
+      "id": "legend_title",
+      "type": "text",
+      "label": "Legend title",
+      "default": "Parts List"
+    },
+    {
+      "id": "information_pointer_color",
+      "type": "color",
+      "label": "Information pointer color",
+      "default": "#8b5cf6",
+      "info": "Purple - used for text information popups"
+    },
+    {
+      "id": "highlight_pointer_color",
+      "type": "color",
+      "label": "Highlight pointer color",
+      "default": "#14b8a6",
+      "info": "Teal - used for featured product highlights"
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "id": "card_width",
+      "type": "range",
+      "label": "Card width",
+      "default": 260
+    },
+    {
+      "id": "show_product_list",
+      "type": "checkbox",
+      "label": "Show product list sidebar",
+      "default": false
+    },
+    {
+      "id": "sidebar_title",
+      "type": "text",
+      "label": "Sidebar title",
+      "default": "Featured Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_hotspot",
+      "name": "Product Hotspot",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "card_position",
+          "type": "select",
+          "label": "Preferred card position",
+          "default": "bottom"
+        },
+        {
+          "id": "show_vendor",
+          "type": "checkbox",
+          "label": "Show vendor",
+          "default": false
+        },
+        {
+          "id": "show_quick_add",
+          "type": "checkbox",
+          "label": "Show add to cart button",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "info_hotspot",
+      "name": "Info Hotspot",
+      "settings": [
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "info"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Feature Highlight"
+        },
+        {
+          "id": "content",
+          "type": "textarea",
+          "label": "Content",
+          "default": "Describe this feature or area of the image."
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link (optional)"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "id": "bubble_position",
+          "type": "select",
+          "label": "Preferred bubble position",
+          "default": "right"
+        }
+      ]
+    },
+    {
+      "type": "parts_hotspot",
+      "name": "Parts/Accessories",
+      "settings": [
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "part_number",
+          "type": "text",
+          "label": "Part number (display)"
+        },
+        {
+          "id": "part_name",
+          "type": "text",
+          "label": "Part name",
+          "default": "Component Name"
+        },
+        {
+          "id": "part_sku",
+          "type": "text",
+          "label": "Part SKU"
+        },
+        {
+          "id": "part_description",
+          "type": "textarea",
+          "label": "Part description"
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Linked product (optional)"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Custom link (if no product)"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "View Details"
+        },
+        {
+          "id": "card_position",
+          "type": "select",
+          "label": "Preferred card position",
+          "default": "right"
+        }
+      ]
+    },
+    {
+      "type": "information_pointer",
+      "name": "Information Pointer",
+      "settings": [
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Did You Know?"
+        },
+        {
+          "id": "content",
+          "type": "richtext",
+          "label": "Content",
+          "default": "<p>Add helpful information, tips, or details about this area of the image.</p>"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link (optional)"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "id": "card_position",
+          "type": "select",
+          "label": "Preferred position",
+          "default": "right"
+        }
+      ]
+    },
+    {
+      "type": "highlight_pointer",
+      "name": "Product Highlight",
+      "settings": [
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "id": "highlight_label",
+          "type": "text",
+          "label": "Highlight label",
+          "default": "Featured"
+        },
+        {
+          "id": "show_quick_add",
+          "type": "checkbox",
+          "label": "Show add to cart button",
+          "default": true
+        },
+        {
+          "id": "highlight_title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "highlight_description",
+          "type": "textarea",
+          "label": "Description"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "Learn More"
+        },
+        {
+          "id": "card_position",
+          "type": "select",
+          "label": "Preferred card position",
+          "default": "bottom"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Shoppable Image (Enhanced)",
+      "blocks": [
+        {
+          "type": "product_hotspot",
+          "settings": {
+            "position_x": 25,
+            "position_y": 40
+          }
+        },
+        {
+          "type": "info_hotspot",
+          "settings": {
+            "position_x": 50,
+            "position_y": 30,
+            "title": "Key Feature",
+            "content": "This area highlights an important feature."
+          }
+        },
+        {
+          "type": "parts_hotspot",
+          "settings": {
+            "position_x": 75,
+            "position_y": 60,
+            "part_name": "Main Assembly"
+          }
+        },
+        {
+          "type": "information_pointer",
+          "settings": {
+            "position_x": 20,
+            "position_y": 70,
+            "title": "Pro Tip",
+            "content": "<p>This is helpful information about the product.</p>"
+          }
+        },
+        {
+          "type": "highlight_pointer",
+          "settings": {
+            "position_x": 80,
+            "position_y": 35,
+            "highlight_label": "Best Seller"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/shoppable-image-enhanced.liquid"
+  }
+}

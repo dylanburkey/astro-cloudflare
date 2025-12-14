@@ -1,0 +1,51 @@
+{
+  "name": "Search RAG",
+  "slug": "search-rag",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/search-rag.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Find The Right Gear"
+    },
+    {
+      "id": "placeholder",
+      "type": "text",
+      "label": "Search Placeholder",
+      "default": "Ask AI: 'Which welder is best for aluminum?'"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button Text",
+      "default": "SEARCH"
+    },
+    {
+      "id": "show_popular",
+      "type": "checkbox",
+      "label": "Show Popular Searches",
+      "default": true
+    },
+    {
+      "id": "popular_terms",
+      "type": "text",
+      "label": "Popular Search Terms",
+      "default": "MIG Welder, TIG, Plasma Cutter, Safety Gear",
+      "info": "Comma separated"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Search RAG"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/search-rag.liquid"
+  }
+}

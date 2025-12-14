@@ -1,0 +1,69 @@
+{
+  "general": {
+    "page": "Page {{ page }}",
+    "skip_to_content": "Skip to content",
+    "loading": "Loading...",
+    "search": "Search",
+    "close": "Close",
+    "menu": "Menu"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": "Price",
+      "sale_price": "Sale price",
+      "regular_price": "Regular price"
+    }
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue shopping",
+    "checkout": "Checkout",
+    "subtotal": "Subtotal",
+    "taxes_and_shipping": "Taxes and shipping calculated at checkout",
+    "remove": "Remove",
+    "update": "Update"
+  },
+  "collections": {
+    "title": "Collections",
+    "all": "All products",
+    "empty": "No products found",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear_all": "Clear all"
+  },
+  "customer": {
+    "account": {
+      "title": "Account",
+      "orders": "Order history",
+      "addresses": "Addresses",
+      "logout": "Log out"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot_password": "Forgot your password?",
+      "create_account": "Create account"
+    },
+    "register": {
+      "title": "Create account",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create"
+    }
+  }
+}

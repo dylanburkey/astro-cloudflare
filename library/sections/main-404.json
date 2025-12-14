@@ -1,0 +1,15 @@
+{
+  "name": "404",
+  "slug": "main-404",
+  "description": "404 section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-404.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-404.liquid"
+  }
+}

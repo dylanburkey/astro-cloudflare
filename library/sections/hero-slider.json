@@ -1,0 +1,181 @@
+{
+  "name": "Hero Slider",
+  "slug": "hero-slider",
+  "description": "section",
+  "category": "hero",
+  "previewImage": "/previews/sections/hero-slider.png",
+  "settings": [
+    {
+      "id": "height",
+      "type": "range",
+      "label": "Height (viewport %)",
+      "default": 100
+    },
+    {
+      "id": "min_height",
+      "type": "range",
+      "label": "Minimum height",
+      "default": 500
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "id": "autoplay_speed",
+      "type": "range",
+      "label": "Autoplay speed",
+      "default": 5000
+    },
+    {
+      "id": "transition_speed",
+      "type": "range",
+      "label": "Transition speed",
+      "default": 800
+    },
+    {
+      "id": "show_arrows",
+      "type": "checkbox",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "id": "show_dots",
+      "type": "checkbox",
+      "label": "Show pagination dots",
+      "default": true
+    },
+    {
+      "id": "show_pause",
+      "type": "checkbox",
+      "label": "Show pause button",
+      "default": true
+    },
+    {
+      "id": "show_scroll_indicator",
+      "type": "checkbox",
+      "label": "Show scroll indicator",
+      "default": false
+    },
+    {
+      "id": "show_particles",
+      "type": "checkbox",
+      "label": "Show decorative particles",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Background image"
+        },
+        {
+          "id": "overlay_color",
+          "type": "color",
+          "label": "Overlay color",
+          "default": "#000000"
+        },
+        {
+          "id": "overlay_opacity",
+          "type": "range",
+          "label": "Overlay opacity",
+          "default": 40
+        },
+        {
+          "id": "content_position",
+          "type": "select",
+          "label": "Content position",
+          "default": "left"
+        },
+        {
+          "id": "subheading",
+          "type": "text",
+          "label": "Subheading",
+          "default": "Welcome"
+        },
+        {
+          "id": "heading",
+          "type": "textarea",
+          "label": "Heading",
+          "default": "A Legacy of Innovation"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Description"
+        },
+        {
+          "id": "button_label",
+          "type": "text",
+          "label": "Button label",
+          "default": "Learn More"
+        },
+        {
+          "id": "button_link",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "button_label_2",
+          "type": "text",
+          "label": "Second button label"
+        },
+        {
+          "id": "button_link_2",
+          "type": "url",
+          "label": "Second button link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "subheading": "Celebrating 75 Years",
+            "heading": "A Legacy of Cutting-Edge Innovations",
+            "description": "Making a positive impact on people, communities, and landscapes worldwide.",
+            "button_label": "Learn More",
+            "content_position": "left"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "subheading": "Inspired by Nature",
+            "heading": "Innovation Through Discovery",
+            "description": "Finding nature's answers to modern challenges since 1947.",
+            "button_label": "Our Story",
+            "content_position": "center"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "subheading": "Join Our Team",
+            "heading": "Build Your Career With Us",
+            "description": "Discover opportunities to grow and make a difference.",
+            "button_label": "View Careers",
+            "button_label_2": "Our Culture",
+            "content_position": "left"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/hero-slider.liquid"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Warm Earth",
+  "description": "Organic and natural with earthy tones",
+  "colors": {
+    "primary": "#8b4513",
+    "secondary": "#556b2f",
+    "accent": "#d2691e",
+    "background": "#faf8f5",
+    "background_secondary": "#f5f0e8",
+    "text": "#3d2914",
+    "text_secondary": "#6b5344"
+  },
+  "typography": {
+    "heading_font": "playfair_display_n7",
+    "body_font": "lato_n4",
+    "heading_scale": 110,
+    "body_scale": 100
+  },
+  "buttons": {
+    "border_radius": 4,
+    "padding_vertical": 14,
+    "padding_horizontal": 28
+  }
+}

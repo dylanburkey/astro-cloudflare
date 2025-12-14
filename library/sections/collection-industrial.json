@@ -1,0 +1,90 @@
+{
+  "name": "Collection industrial",
+  "slug": "collection-industrial",
+  "description": "section",
+  "category": "collection",
+  "previewImage": "/previews/sections/collection-industrial.png",
+  "settings": [
+    {
+      "id": "style",
+      "type": "select",
+      "label": "Design style",
+      "default": "welder"
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "id": "products_to_show",
+      "type": "range",
+      "label": "Products to show",
+      "default": 6
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Featured Products"
+    },
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "show_description",
+      "type": "checkbox",
+      "label": "Show product description",
+      "default": true
+    },
+    {
+      "id": "show_view_all",
+      "type": "checkbox",
+      "label": "Show 'View all' button",
+      "default": true
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns (desktop)",
+      "default": 3
+    },
+    {
+      "id": "grid_line_width",
+      "type": "range",
+      "label": "Grid line width",
+      "default": 2
+    },
+    {
+      "id": "grid_line_color",
+      "type": "color",
+      "label": "Grid line color",
+      "default": "#333333"
+    },
+    {
+      "id": "card_padding",
+      "type": "range",
+      "label": "Card padding",
+      "default": 24
+    },
+    {
+      "id": "image_height",
+      "type": "range",
+      "label": "Image height",
+      "default": 300
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Collection industrial"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/collection-industrial.liquid"
+  }
+}

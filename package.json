@@ -7,12 +7,14 @@
     "build": "astro build",
     "preview": "wrangler pages dev ./dist",
     "deploy": "astro build && wrangler deploy",
+    "sync:theme": "node scripts/sync-theme-sections.js",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.5",
+    "fflate": "^0.8.2",
     "tailwindcss": "^4.1.18"
   }
 }

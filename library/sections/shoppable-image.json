@@ -1,0 +1,136 @@
+{
+  "name": "Shoppable image",
+  "slug": "shoppable-image",
+  "description": "section",
+  "category": "media",
+  "previewImage": "/previews/sections/shoppable-image.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Shop the look"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "show_product_list",
+      "type": "checkbox",
+      "label": "Show product list sidebar",
+      "default": true
+    },
+    {
+      "id": "sidebar_title",
+      "type": "text",
+      "label": "Sidebar title",
+      "default": "Featured products"
+    },
+    {
+      "id": "hotspot_size",
+      "type": "range",
+      "label": "Hotspot size",
+      "default": 32
+    },
+    {
+      "id": "hotspot_color",
+      "type": "color",
+      "label": "Hotspot color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "hotspot_pulse_color",
+      "type": "color",
+      "label": "Pulse animation color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "id": "card_width",
+      "type": "range",
+      "label": "Card width",
+      "default": 240
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Product hotspot",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "id": "position_x",
+          "type": "range",
+          "label": "Horizontal position",
+          "default": 50
+        },
+        {
+          "id": "position_y",
+          "type": "range",
+          "label": "Vertical position",
+          "default": 50
+        },
+        {
+          "id": "card_position",
+          "type": "select",
+          "label": "Preferred card position",
+          "default": "bottom"
+        },
+        {
+          "id": "show_vendor",
+          "type": "checkbox",
+          "label": "Show vendor",
+          "default": false
+        },
+        {
+          "id": "show_quick_add",
+          "type": "checkbox",
+          "label": "Show add to cart button",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Shoppable image",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_x": 30,
+            "position_y": 40
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "position_x": 70,
+            "position_y": 60
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/shoppable-image.liquid"
+  }
+}

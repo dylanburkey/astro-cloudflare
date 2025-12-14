@@ -1,0 +1,103 @@
+{
+  "name": "Preset: Footer",
+  "slug": "preset-footer",
+  "description": "section",
+  "category": "footer",
+  "previewImage": "/previews/sections/preset-footer.png",
+  "settings": [
+    {
+      "id": "logo",
+      "type": "image_picker",
+      "label": "Logo"
+    },
+    {
+      "id": "logo_text",
+      "type": "text",
+      "label": "Logo text (if no image)",
+      "default": "Zebra Skimmers"
+    },
+    {
+      "id": "tagline",
+      "type": "textarea",
+      "label": "Tagline",
+      "default": "American-made oil skimmers and coolant automation systems. Trusted by machinists worldwide since 1994."
+    },
+    {
+      "id": "phone",
+      "type": "text",
+      "label": "Phone number",
+      "default": "1-888-249-4855"
+    },
+    {
+      "id": "email",
+      "type": "text",
+      "label": "Email",
+      "default": "info@zebraskimmers.com"
+    },
+    {
+      "id": "address",
+      "type": "textarea",
+      "label": "Address",
+      "default": "6632 Seville Drive, Canfield, OH 44406"
+    },
+    {
+      "id": "copyright_text",
+      "type": "text",
+      "label": "Copyright text",
+      "default": "Zebra Skimmers"
+    },
+    {
+      "id": "legal_menu",
+      "type": "link_list",
+      "label": "Legal links menu"
+    },
+    {
+      "id": "show_payment_icons",
+      "type": "checkbox",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Navigation Menu",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Products"
+        },
+        {
+          "id": "menu",
+          "type": "link_list",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social Link",
+      "settings": [
+        {
+          "id": "platform",
+          "type": "select",
+          "label": "Platform",
+          "default": "facebook"
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-footer.liquid"
+  }
+}

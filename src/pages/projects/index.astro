@@ -1,8 +1,8 @@
 ---
 import Dashboard from '../../layouts/Dashboard.astro';
-import { getCollection } from 'astro:content';
+import { listProjects } from '../../lib/project/create';
 
-const projects = await getCollection('projects');
+const projects = await listProjects(Astro.locals);
 ---
 
 <Dashboard title="Projects" activeNav="projects">
@@ -32,7 +32,7 @@ const projects = await getCollection('projects');
   ) : (
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {projects.map((project) => (
-        <a href={`/projects/${project.data.slug}`} class="bg-white rounded-xl shadow-sm border border-gray-200 hover:border-emerald-300 hover:shadow-md transition-all overflow-hidden group">
+        <a href={`/projects/${project.slug}`} class="bg-white rounded-xl shadow-sm border border-gray-200 hover:border-emerald-300 hover:shadow-md transition-all overflow-hidden group">
           <div class="h-32 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
             <svg class="w-12 h-12 text-gray-300 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
@@ -40,29 +40,29 @@ const projects = await getCollection('projects');
           </div>
           <div class="p-4">
             <div class="flex items-start justify-between mb-2">
-              <h3 class="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">{project.data.name}</h3>
+              <h3 class="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">{project.name}</h3>
               <span class:list={[
                 'px-2 py-0.5 text-xs font-medium rounded-full',
-                project.data.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
-                project.data.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
+                project.status === 'active' ? 'bg-emerald-100 text-emerald-700' :
+                project.status === 'draft' ? 'bg-yellow-100 text-yellow-700' :
                 'bg-gray-100 text-gray-700'
               ]}>
-                {project.data.status}
+                {project.status}
               </span>
             </div>
-            <p class="text-sm text-gray-500 mb-3 line-clamp-2">{project.data.description || 'No description'}</p>
+            <p class="text-sm text-gray-500 mb-3 line-clamp-2">{project.description || 'No description'}</p>
             <div class="flex items-center gap-4 text-xs text-gray-400">
               <span class="flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
                 </svg>
-                {project.data.sections.length} sections
+                {project.sections.length} sections
               </span>
               <span class="flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4" />
                 </svg>
-                {project.data.blocks.length} blocks
+                {project.blocks.length} blocks
               </span>
             </div>
           </div>

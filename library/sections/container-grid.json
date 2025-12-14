@@ -1,0 +1,231 @@
+{
+  "name": "Container grid",
+  "slug": "container-grid",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/container-grid.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Featured content"
+    },
+    {
+      "id": "description",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "center_header",
+      "type": "checkbox",
+      "label": "Center header",
+      "default": true
+    },
+    {
+      "id": "layout_pattern",
+      "type": "select",
+      "label": "Layout pattern",
+      "default": "grid"
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns (desktop)",
+      "default": 3
+    },
+    {
+      "id": "gap",
+      "type": "range",
+      "label": "Gap",
+      "default": 24
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "id": "card_border_color",
+      "type": "color",
+      "label": "Card border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "id": "card_border_radius",
+      "type": "range",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "id": "card_padding",
+      "type": "range",
+      "label": "Card padding",
+      "default": 24
+    },
+    {
+      "id": "card_shadow",
+      "type": "select",
+      "label": "Card hover shadow",
+      "default": "0 8px 24px rgba(0,0,0,0.12)"
+    },
+    {
+      "id": "accent_color",
+      "type": "color",
+      "label": "Accent color",
+      "default": "#334FB4"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "button_style",
+      "type": "select",
+      "label": "Button style",
+      "default": "primary"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Content card",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image_position",
+          "type": "select",
+          "label": "Image position (when horizontal)",
+          "default": "left"
+        },
+        {
+          "id": "badge",
+          "type": "text",
+          "label": "Badge text"
+        },
+        {
+          "id": "icon",
+          "type": "text",
+          "label": "Icon (emoji or text)"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Feature title"
+        },
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>Describe the feature or content here.</p>"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "id": "span_columns",
+          "type": "checkbox",
+          "label": "Span two columns",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection"
+        }
+      ]
+    },
+    {
+      "type": "custom_html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "id": "html",
+          "type": "html",
+          "label": "HTML content"
+        },
+        {
+          "id": "span_columns",
+          "type": "checkbox",
+          "label": "Span two columns",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Container grid",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/container-grid.liquid"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "name": "Preset: Trust Badges",
+  "slug": "preset-trust-badges",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/preset-trust-badges.png",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Section title (screen reader)",
+      "default": "Why Choose Us"
+    },
+    {
+      "id": "background_style",
+      "type": "select",
+      "label": "Background style",
+      "default": "light"
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns (desktop)",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "shield-check"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Free Lifetime Warranty"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtitle",
+          "default": "On all oil skimmers"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shield-check",
+            "title": "Free Lifetime Warranty",
+            "subtitle": "On all oil skimmers"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "flag",
+            "title": "Made in the USA",
+            "subtitle": "American quality since 1994"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Fast Shipping",
+            "subtitle": "Most orders ship same day"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "phone",
+            "title": "Expert Support",
+            "subtitle": "Real engineers, real answers"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-trust-badges.liquid"
+  }
+}

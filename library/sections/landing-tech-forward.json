@@ -1,0 +1,497 @@
+{
+  "name": "Landing: Tech Forward",
+  "slug": "landing-tech-forward",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/landing-tech-forward.png",
+  "settings": [
+    {
+      "id": "hero_image",
+      "type": "image_picker",
+      "label": "Hero background image"
+    },
+    {
+      "id": "hero_badge",
+      "type": "text",
+      "label": "Badge text",
+      "default": "Now Available"
+    },
+    {
+      "id": "hero_title",
+      "type": "text",
+      "label": "Title",
+      "default": "The Future of Intelligence"
+    },
+    {
+      "id": "hero_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Experience next-generation AI that learns, adapts, and evolves with your business needs."
+    },
+    {
+      "id": "hero_button_label",
+      "type": "text",
+      "label": "Primary button label",
+      "default": "Start Free Trial"
+    },
+    {
+      "id": "hero_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "hero_secondary_label",
+      "type": "text",
+      "label": "Secondary button label",
+      "default": "Watch Demo"
+    },
+    {
+      "id": "hero_secondary_link",
+      "type": "url",
+      "label": "Secondary button link"
+    },
+    {
+      "id": "show_hero_stats",
+      "type": "checkbox",
+      "label": "Show hero stats",
+      "default": true
+    },
+    {
+      "id": "show_features",
+      "type": "checkbox",
+      "label": "Show features section",
+      "default": true
+    },
+    {
+      "id": "features_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Features"
+    },
+    {
+      "id": "features_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Built for the future"
+    },
+    {
+      "id": "features_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Everything you need to harness the power of artificial intelligence, wrapped in one elegant platform."
+    },
+    {
+      "id": "show_showcase",
+      "type": "checkbox",
+      "label": "Show product showcase",
+      "default": true
+    },
+    {
+      "id": "showcase_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Core Product"
+    },
+    {
+      "id": "showcase_title",
+      "type": "text",
+      "label": "Title",
+      "default": "NeuralCore X1"
+    },
+    {
+      "id": "showcase_text",
+      "type": "textarea",
+      "label": "Description",
+      "default": "The most advanced AI processing unit ever created. Engineered for tomorrow's challenges."
+    },
+    {
+      "id": "showcase_image",
+      "type": "image_picker",
+      "label": "Product image"
+    },
+    {
+      "id": "showcase_button_label",
+      "type": "text",
+      "label": "Button label",
+      "default": "Learn More"
+    },
+    {
+      "id": "showcase_button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "show_pricing",
+      "type": "checkbox",
+      "label": "Show pricing section",
+      "default": true
+    },
+    {
+      "id": "pricing_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Pricing"
+    },
+    {
+      "id": "pricing_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Simple, transparent pricing"
+    },
+    {
+      "id": "pricing_subtitle",
+      "type": "textarea",
+      "label": "Subtitle",
+      "default": "Start free, scale as you grow. No hidden fees, cancel anytime."
+    },
+    {
+      "id": "show_testimonials",
+      "type": "checkbox",
+      "label": "Show testimonials",
+      "default": true
+    },
+    {
+      "id": "testimonials_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Testimonials"
+    },
+    {
+      "id": "testimonials_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Loved by innovators"
+    },
+    {
+      "id": "show_cta",
+      "type": "checkbox",
+      "label": "Show CTA section",
+      "default": true
+    },
+    {
+      "id": "cta_title",
+      "type": "text",
+      "label": "Title",
+      "default": "Ready to transform your workflow?"
+    },
+    {
+      "id": "cta_text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "Join thousands of forward-thinking teams already using NeuralCore."
+    },
+    {
+      "id": "cta_button_label",
+      "type": "text",
+      "label": "Primary button label",
+      "default": "Get Started Free"
+    },
+    {
+      "id": "cta_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "cta_secondary_label",
+      "type": "text",
+      "label": "Secondary button label",
+      "default": "Talk to Sales"
+    },
+    {
+      "id": "cta_secondary_link",
+      "type": "url",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_stat",
+      "name": "Hero Stat",
+      "settings": [
+        {
+          "id": "value",
+          "type": "text",
+          "label": "Value",
+          "default": "99.9%"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Uptime"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "cpu"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "id": "text",
+          "type": "textarea",
+          "label": "Description",
+          "default": "Feature description goes here."
+        }
+      ]
+    },
+    {
+      "type": "showcase_item",
+      "name": "Showcase Feature",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Feature text",
+          "default": "Feature item"
+        }
+      ]
+    },
+    {
+      "type": "pricing_tier",
+      "name": "Pricing Tier",
+      "settings": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Plan name",
+          "default": "Pro"
+        },
+        {
+          "id": "price",
+          "type": "text",
+          "label": "Price",
+          "default": "49"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Description",
+          "default": "For growing teams"
+        },
+        {
+          "id": "features",
+          "type": "textarea",
+          "label": "Features (separate with |)",
+          "default": "Unlimited projects|10 team members|API access|Priority support"
+        },
+        {
+          "id": "featured",
+          "type": "checkbox",
+          "label": "Featured/Popular",
+          "default": false
+        },
+        {
+          "id": "button_label",
+          "type": "text",
+          "label": "Button label",
+          "default": "Get Started"
+        },
+        {
+          "id": "button_link",
+          "type": "url",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "id": "avatar",
+          "type": "image_picker",
+          "label": "Avatar"
+        },
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Name",
+          "default": "John Doe"
+        },
+        {
+          "id": "role",
+          "type": "text",
+          "label": "Role/Company",
+          "default": "CEO at Company"
+        },
+        {
+          "id": "quote",
+          "type": "textarea",
+          "label": "Quote",
+          "default": "This product has transformed how we work."
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Landing: Tech Forward",
+      "blocks": [
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "99.9%",
+            "label": "Uptime"
+          }
+        },
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "10M+",
+            "label": "Users"
+          }
+        },
+        {
+          "type": "hero_stat",
+          "settings": {
+            "value": "<50ms",
+            "label": "Latency"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "cpu",
+            "title": "Neural Processing",
+            "text": "Advanced AI algorithms that learn and adapt to your unique business patterns."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "Enterprise Security",
+            "text": "Bank-grade encryption with SOC 2 Type II compliance and zero-knowledge architecture."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "zap",
+            "title": "Lightning Fast",
+            "text": "Sub-millisecond response times with our globally distributed edge network."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "cloud",
+            "title": "Cloud Native",
+            "text": "Built for the cloud from day one. Auto-scaling, multi-region, always available."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "title": "Global Reach",
+            "text": "Deploy anywhere with 50+ data centers across six continents."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "code",
+            "title": "Developer First",
+            "text": "RESTful APIs, SDKs for every language, and comprehensive documentation."
+          }
+        },
+        {
+          "type": "showcase_item",
+          "settings": {
+            "text": "200+ TOPS neural processing power"
+          }
+        },
+        {
+          "type": "showcase_item",
+          "settings": {
+            "text": "Real-time adaptive learning"
+          }
+        },
+        {
+          "type": "showcase_item",
+          "settings": {
+            "text": "Ultra-low power consumption"
+          }
+        },
+        {
+          "type": "showcase_item",
+          "settings": {
+            "text": "Seamless cloud integration"
+          }
+        },
+        {
+          "type": "pricing_tier",
+          "settings": {
+            "name": "Starter",
+            "price": "0",
+            "description": "Perfect for individuals",
+            "features": "3 projects|1 user|Community support|Basic analytics",
+            "featured": false
+          }
+        },
+        {
+          "type": "pricing_tier",
+          "settings": {
+            "name": "Pro",
+            "price": "49",
+            "description": "For growing teams",
+            "features": "Unlimited projects|10 team members|API access|Priority support",
+            "featured": true
+          }
+        },
+        {
+          "type": "pricing_tier",
+          "settings": {
+            "name": "Enterprise",
+            "price": "199",
+            "description": "For large organizations",
+            "features": "Custom solutions|Unlimited users|Dedicated support|SLA guarantee",
+            "featured": false
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Chen",
+            "role": "CTO at TechFlow",
+            "quote": "NeuralCore has completely transformed our data pipeline. What used to take hours now happens in seconds."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Marcus Johnson",
+            "role": "Lead Engineer at Scale AI",
+            "quote": "The API is incredibly well-designed. Our team was up and running in less than a day."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Emily Watson",
+            "role": "VP of Product at DataSync",
+            "quote": "Finally, an AI platform that actually delivers on its promises. The accuracy is remarkable."
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/landing-tech-forward.liquid"
+  }
+}

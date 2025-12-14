@@ -12,5 +12,12 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "theme-builder",
+      "database_id": "ea17beec-db01-427e-80fa-3b29c6fbcf33"
+    }
+  ]
 }

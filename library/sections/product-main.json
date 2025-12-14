@@ -1,0 +1,22 @@
+{
+  "name": "Product Main",
+  "slug": "product-main",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/product-main.png",
+  "settings": [
+    {
+      "id": "show_specs",
+      "type": "checkbox",
+      "label": "Show tech specs table",
+      "default": true
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/product-main.liquid"
+  }
+}

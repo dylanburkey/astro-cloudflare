@@ -1,0 +1,171 @@
+{
+  "name": "Preset: Product Grid",
+  "slug": "preset-product-grid",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/preset-product-grid.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "Top Picks"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Popular Products"
+    },
+    {
+      "id": "view_all_text",
+      "type": "text",
+      "label": "View all text",
+      "default": "View All Products"
+    },
+    {
+      "id": "view_all_link",
+      "type": "url",
+      "label": "View all link"
+    },
+    {
+      "id": "add_to_cart_text",
+      "type": "text",
+      "label": "Add to cart text",
+      "default": "Add to Cart"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Product image"
+        },
+        {
+          "id": "placeholder_icon",
+          "type": "select",
+          "label": "Placeholder icon (if no image)",
+          "default": "cog"
+        },
+        {
+          "id": "badge",
+          "type": "text",
+          "label": "Badge text"
+        },
+        {
+          "id": "badge_style",
+          "type": "select",
+          "label": "Badge style",
+          "default": "popular"
+        },
+        {
+          "id": "vendor",
+          "type": "text",
+          "label": "Vendor/Brand"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Product Name"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Short description"
+        },
+        {
+          "id": "rating",
+          "type": "range",
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "id": "review_count",
+          "type": "number",
+          "label": "Review count",
+          "default": 0
+        },
+        {
+          "id": "price",
+          "type": "text",
+          "label": "Price",
+          "default": "$499"
+        },
+        {
+          "id": "compare_price",
+          "type": "text",
+          "label": "Compare at price"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Product Grid",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "Model 6V Belt Skimmer",
+            "description": "Our most popular belt skimmer for CNC machine sumps",
+            "price": "$428",
+            "rating": 5,
+            "review_count": 127,
+            "badge": "Best Seller",
+            "badge_style": "popular"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Sidewinder® Tube Skimmer",
+            "description": "Flexible tube design reaches into tight spaces",
+            "price": "$385",
+            "rating": 5,
+            "review_count": 89,
+            "badge": "New",
+            "badge_style": "new"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Disk Skimmer Pro",
+            "description": "Precision disk technology for light oil removal",
+            "price": "$762",
+            "rating": 4,
+            "review_count": 45
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Blue Mamba™ Coolant Hose",
+            "description": "Heavy-duty coolant delivery with quick-connect fittings",
+            "price": "$89",
+            "compare_price": "$129",
+            "rating": 5,
+            "review_count": 203,
+            "badge": "Sale",
+            "badge_style": "sale"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-product-grid.liquid"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "name": "Header industrial",
+  "slug": "header-industrial",
+  "description": "section",
+  "category": "header",
+  "previewImage": "/previews/sections/header-industrial.png",
+  "settings": [
+    {
+      "id": "style",
+      "type": "select",
+      "label": "Design style",
+      "default": "machinist"
+    },
+    {
+      "id": "header_height",
+      "type": "range",
+      "label": "Header height",
+      "default": 80
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background",
+      "default": "#0a0a0a"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text",
+      "default": "#e5e5e5"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border",
+      "default": "#333333"
+    },
+    {
+      "id": "logo",
+      "type": "image_picker",
+      "label": "Logo image"
+    },
+    {
+      "id": "logo_width",
+      "type": "range",
+      "label": "Logo width",
+      "default": 150
+    },
+    {
+      "id": "logo_text",
+      "type": "text",
+      "label": "Logo text",
+      "default": "FORGE"
+    },
+    {
+      "id": "logo_suffix",
+      "type": "text",
+      "label": "Logo suffix (accent color)",
+      "default": "IND."
+    },
+    {
+      "id": "show_numbers",
+      "type": "checkbox",
+      "label": "Show bracket numbers [01]",
+      "default": true
+    },
+    {
+      "id": "show_search",
+      "type": "checkbox",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "id": "show_account",
+      "type": "checkbox",
+      "label": "Show account icon",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menu item",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Products"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Header industrial",
+      "blocks": [
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "PRODUCTS",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "CATALOG",
+            "link": "/collections"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "ABOUT",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "CONTACT",
+            "link": "/pages/contact"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/header-industrial.liquid"
+  }
+}

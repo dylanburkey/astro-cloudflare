@@ -1,14 +1,15 @@
 {
-  "name": "Featured Collection",
+  "name": "t:sections.featured_collection.name",
   "slug": "featured-collection",
-  "description": "Display products from a selected collection in a grid",
+  "description": "section",
   "category": "collection",
+  "previewImage": "/previews/sections/featured-collection.png",
   "settings": [
     {
-      "id": "title",
+      "id": "heading",
       "type": "text",
       "label": "Heading",
-      "default": "Featured Collection"
+      "default": "Featured collection"
     },
     {
       "id": "collection",
@@ -18,49 +19,31 @@
     {
       "id": "products_to_show",
       "type": "range",
-      "label": "Maximum products to show",
+      "label": "Products to show",
       "default": 4
     },
     {
-      "id": "columns_desktop",
+      "id": "columns",
       "type": "range",
-      "label": "Number of columns on desktop",
+      "label": "Columns on desktop",
       "default": 4
     },
     {
       "id": "show_view_all",
       "type": "checkbox",
-      "label": "Show 'View all' button",
+      "label": "Show view all link",
       "default": true
-    },
-    {
-      "id": "show_secondary_image",
-      "type": "checkbox",
-      "label": "Show second image on hover",
-      "default": false
-    },
-    {
-      "id": "show_vendor",
-      "type": "checkbox",
-      "label": "Show vendor",
-      "default": false
-    },
-    {
-      "id": "show_rating",
-      "type": "checkbox",
-      "label": "Show product rating",
-      "default": false
     }
   ],
   "blocks": [],
-  "maxBlocks": 0,
+  "maxBlocks": 50,
   "presets": [
     {
-      "name": "Featured Collection",
-      "settings": {
-        "title": "Featured Collection",
-        "products_to_show": 4
-      }
+      "name": "t:sections.featured_collection.name"
     }
-  ]
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/featured-collection.liquid"
+  }
 }

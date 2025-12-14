@@ -1,0 +1,15 @@
+{
+  "name": "Order",
+  "slug": "main-order",
+  "description": "Order section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-order.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-order.liquid"
+  }
+}

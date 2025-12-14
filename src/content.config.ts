@@ -9,7 +9,7 @@ const projectSchema = z.object({
   storeId: z.string().optional(),
   description: z.string().optional(),
   status: z.enum(['active', 'draft', 'archived']).default('draft'),
-  baseTheme: z.enum(['dawn', 'horizon', 'minimal', 'custom']).default('dawn'),
+  baseTheme: z.enum(['base', 'dawn', 'horizon', 'minimal', 'custom']).default('base'),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   sections: z.array(z.string()).default([]),

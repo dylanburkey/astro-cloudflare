@@ -1,0 +1,156 @@
+{
+  "name": "Product (Enhanced)",
+  "slug": "product-main-enhanced",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/product-main-enhanced.png",
+  "settings": [
+    {
+      "id": "show_breadcrumbs",
+      "type": "checkbox",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "id": "enable_zoom",
+      "type": "checkbox",
+      "label": "Enable image zoom",
+      "default": true
+    },
+    {
+      "id": "show_vendor",
+      "type": "checkbox",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "id": "show_sku",
+      "type": "checkbox",
+      "label": "Show SKU",
+      "default": true
+    },
+    {
+      "id": "show_short_description",
+      "type": "checkbox",
+      "label": "Show short description",
+      "default": true
+    },
+    {
+      "id": "show_stock_status",
+      "type": "checkbox",
+      "label": "Show stock status",
+      "default": true
+    },
+    {
+      "id": "low_stock_threshold",
+      "type": "range",
+      "label": "Low stock warning threshold",
+      "default": 5,
+      "info": "Show 'Only X left' when inventory is at or below this number"
+    },
+    {
+      "id": "show_reviews",
+      "type": "checkbox",
+      "label": "Show review stars",
+      "default": true,
+      "info": "Uses product metafields: reviews.rating and reviews.count"
+    },
+    {
+      "id": "variant_style",
+      "type": "select",
+      "label": "Variant selector style",
+      "default": "pills"
+    },
+    {
+      "id": "show_quantity",
+      "type": "checkbox",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "id": "show_specs",
+      "type": "checkbox",
+      "label": "Show technical specifications",
+      "default": true,
+      "info": "Uses product metafields under 'specs' namespace"
+    },
+    {
+      "id": "show_attachments",
+      "type": "checkbox",
+      "label": "Show product attachments",
+      "default": true,
+      "info": "Uses product metafields under 'attachments' namespace"
+    },
+    {
+      "id": "show_trust_badges",
+      "type": "checkbox",
+      "label": "Show trust badges",
+      "default": true
+    },
+    {
+      "id": "add_to_cart_text",
+      "type": "text",
+      "label": "Add to cart text",
+      "default": "Add to Cart"
+    },
+    {
+      "id": "sold_out_text",
+      "type": "text",
+      "label": "Sold out text",
+      "default": "Sold Out"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "shield"
+        },
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Text",
+          "default": "Free Shipping"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Product (Enhanced)",
+      "blocks": [
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "shield",
+            "text": "Lifetime Warranty"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "truck",
+            "text": "Free Shipping"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "refresh",
+            "text": "30-Day Returns"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/product-main-enhanced.liquid"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Collection list",
+  "slug": "main-list-collections",
+  "description": "Collection list section from Forge Industrial theme",
+  "category": "collection",
+  "previewImage": "/previews/sections/main-list-collections.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-list-collections.liquid"
+  }
+}

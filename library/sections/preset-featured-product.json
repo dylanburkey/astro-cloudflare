@@ -1,0 +1,178 @@
+{
+  "name": "Preset: Featured Product",
+  "slug": "preset-featured-product",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/preset-featured-product.png",
+  "settings": [
+    {
+      "id": "layout",
+      "type": "select",
+      "label": "Layout",
+      "default": "image-left"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Product image"
+    },
+    {
+      "id": "badge_text",
+      "type": "text",
+      "label": "Badge text",
+      "default": "Best Seller"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "Featured Product"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "DAZZLE™ 1 Automated Sump System"
+    },
+    {
+      "id": "description",
+      "type": "richtext",
+      "label": "Description",
+      "default": "<p>The Dazzle™ 1 is a modular, automated sump management system that monitors and maintains your coolant at optimal conditions 24/7. Reduce coolant costs, extend tool life, and improve part quality with automated fluid management.</p>"
+    },
+    {
+      "id": "price_prefix",
+      "type": "text",
+      "label": "Price prefix",
+      "default": "Starting at"
+    },
+    {
+      "id": "price",
+      "type": "text",
+      "label": "Price",
+      "default": "$682"
+    },
+    {
+      "id": "compare_price",
+      "type": "text",
+      "label": "Compare at price"
+    },
+    {
+      "id": "primary_button_text",
+      "type": "text",
+      "label": "Primary button text",
+      "default": "Configure & Buy"
+    },
+    {
+      "id": "primary_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "secondary_button_text",
+      "type": "text",
+      "label": "Secondary button text",
+      "default": "Talk to an Expert"
+    },
+    {
+      "id": "secondary_button_link",
+      "type": "url",
+      "label": "Secondary button link"
+    },
+    {
+      "id": "trust_note",
+      "type": "text",
+      "label": "Trust note",
+      "default": "Free lifetime warranty included"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Benefit text",
+          "default": "Reduce coolant costs by up to 50%"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Floating Stat",
+      "limit": 2,
+      "settings": [
+        {
+          "id": "value",
+          "type": "text",
+          "label": "Value",
+          "default": "50%"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Cost Savings"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Featured Product",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Reduce coolant costs by up to 50%"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Automated 24/7 fluid monitoring"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Extend tool life and improve part quality"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Modular design - start small, expand later"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "ROI typically achieved in 8 months"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "50%",
+            "label": "Cost Savings"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "8mo",
+            "label": "Avg. ROI"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-featured-product.liquid"
+  }
+}

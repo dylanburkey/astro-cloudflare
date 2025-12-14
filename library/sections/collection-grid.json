@@ -1,0 +1,71 @@
+{
+  "name": "Collection Grid",
+  "slug": "collection-grid",
+  "description": "section",
+  "category": "collection",
+  "previewImage": "/previews/sections/collection-grid.png",
+  "settings": [
+    {
+      "id": "products_per_page",
+      "type": "range",
+      "label": "Products per page",
+      "default": 12
+    },
+    {
+      "id": "columns",
+      "type": "select",
+      "label": "Columns on desktop",
+      "default": "3"
+    },
+    {
+      "id": "show_filters",
+      "type": "checkbox",
+      "label": "Show filters sidebar",
+      "default": true
+    },
+    {
+      "id": "show_vendor",
+      "type": "checkbox",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "id": "show_secondary_image",
+      "type": "checkbox",
+      "label": "Show secondary image on hover",
+      "default": true
+    },
+    {
+      "id": "show_stock_status",
+      "type": "checkbox",
+      "label": "Show stock status",
+      "default": true
+    },
+    {
+      "id": "show_description",
+      "type": "checkbox",
+      "label": "Show short description",
+      "default": true
+    },
+    {
+      "id": "show_reviews",
+      "type": "checkbox",
+      "label": "Show review stars",
+      "default": true,
+      "info": "Uses product metafields: reviews.rating and reviews.count"
+    },
+    {
+      "id": "image_ratio",
+      "type": "select",
+      "label": "Image aspect ratio",
+      "default": "portrait"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/collection-grid.liquid"
+  }
+}

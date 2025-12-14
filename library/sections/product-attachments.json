@@ -1,0 +1,34 @@
+{
+  "name": "Product Attachments",
+  "slug": "product-attachments",
+  "description": "section-product-attachments",
+  "category": "product",
+  "previewImage": "/previews/sections/product-attachments.png",
+  "settings": [
+    {
+      "id": "style",
+      "type": "select",
+      "label": "Display style",
+      "default": "list"
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/product-attachments.liquid"
+  }
+}

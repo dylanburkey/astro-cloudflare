@@ -1,0 +1,123 @@
+{
+  "name": "Preset: Product Categories",
+  "slug": "preset-product-categories",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/preset-product-categories.png",
+  "settings": [
+    {
+      "id": "subtitle",
+      "type": "text",
+      "label": "Subtitle",
+      "default": "Browse Our Solutions"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Product Categories"
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description",
+      "default": "Find the perfect oil removal and coolant management solution for your application."
+    },
+    {
+      "id": "cta_text",
+      "type": "text",
+      "label": "Card CTA text",
+      "default": "Shop Now"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "placeholder_icon",
+          "type": "select",
+          "label": "Placeholder icon (if no image)",
+          "default": "cog"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Belt Skimmers"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Description",
+          "default": "Industrial-grade belt oil skimmers for heavy-duty applications"
+        },
+        {
+          "id": "product_count",
+          "type": "number",
+          "label": "Product count",
+          "default": 17
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Product Categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Belt Skimmers",
+            "description": "Industrial-grade belt oil skimmers for heavy-duty applications",
+            "product_count": 17,
+            "placeholder_icon": "cog"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Tube Skimmers",
+            "description": "Flexible tube skimmers for tight spaces and CNC sumps",
+            "product_count": 15,
+            "placeholder_icon": "tool"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Disk Skimmers",
+            "description": "Precision disk skimmers for light oil removal",
+            "product_count": 7,
+            "placeholder_icon": "droplet"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Coolant Automation",
+            "description": "Complete sump management and automation systems",
+            "product_count": 12,
+            "placeholder_icon": "cube"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-product-categories.liquid"
+  }
+}

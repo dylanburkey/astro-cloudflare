@@ -1,0 +1,34 @@
+{
+  "name": "404 Page",
+  "slug": "404-main",
+  "description": "404 Page section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/404-main.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Page Not Found"
+    },
+    {
+      "id": "text",
+      "type": "textarea",
+      "label": "Text",
+      "default": "The page you're looking for doesn't exist or has been moved."
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button Label",
+      "default": "BACK TO HOME"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/404-main.liquid"
+  }
+}

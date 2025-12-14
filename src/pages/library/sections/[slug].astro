@@ -1,33 +1,71 @@
 ---
 import Dashboard from '../../../layouts/Dashboard.astro';
 import { getCollection } from 'astro:content';
+import { getVariantInfo, listVariantsOfSection } from '../../../lib/project/promote-variant';
+import { listProjects } from '../../../lib/project/create';
 
-export async function getStaticPaths() {
-  const sections = await getCollection('sections');
-  return sections.map((section) => ({
-    params: { slug: section.data.slug },
-    props: { section },
-  }));
+const { slug } = Astro.params;
+
+const sections = await getCollection('sections');
+let section = sections.find(s => s.data.slug === slug);
+
+// If not found in content collection, check if it's a variant from D1
+let variantInfo = null;
+let isVariant = false;
+let parentSection = null;
+
+if (!section && slug) {
+  variantInfo = await getVariantInfo(slug, Astro.locals);
+  if (variantInfo) {
+    isVariant = true;
+    // Find the parent section
+    parentSection = sections.find(s => s.data.slug === variantInfo?.parentSection);
+  }
 }
 
-const { section } = Astro.props;
+if (!section && !variantInfo) {
+  return Astro.redirect('/library/sections');
+}
+
+// Get any variants of this section (if it's a parent section)
+const sectionVariants = slug ? await listVariantsOfSection(slug, Astro.locals) : [];
+
+// Get projects from D1
+const projects = await listProjects(Astro.locals);
+
+// Use variant data if it's a variant
+const displayData = isVariant && variantInfo ? {
+  name: variantInfo.name,
+  slug: variantInfo.slug,
+  description: variantInfo.description,
+  category: variantInfo.category,
+  settings: variantInfo.settings as Array<{ id: string; label: string; type: string }>,
+  blocks: variantInfo.blocks,
+  maxBlocks: variantInfo.maxBlocks,
+  presets: variantInfo.presets,
+} : section?.data;
+
+// Find which projects already have this section
+const projectsWithSection = projects.filter(p => p.sections.includes(slug || ''));
+const projectsWithoutSection = projects.filter(p => !p.sections.includes(slug || ''));
 
 // Generate Liquid schema from section data
-function generateLiquidSchema(sectionData: typeof section.data) {
+function generateLiquidSchema(data: typeof displayData) {
+  if (!data) return '{}';
   const schema = {
-    name: sectionData.name,
-    settings: sectionData.settings,
-    blocks: sectionData.blocks,
-    max_blocks: sectionData.maxBlocks,
-    presets: sectionData.presets,
+    name: data.name,
+    settings: data.settings,
+    blocks: data.blocks,
+    max_blocks: data.maxBlocks,
+    presets: data.presets,
   };
   return JSON.stringify(schema, null, 2);
 }
 
-const liquidSchema = generateLiquidSchema(section.data);
+const liquidSchema = generateLiquidSchema(displayData);
 ---
 
-<Dashboard title={section.data.name} activeNav="sections">
+<Dashboard title={displayData?.name || 'Section'} activeNav="sections">
   <div class="mb-6">
     <a href="/library/sections" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,19 +74,117 @@ const liquidSchema = generateLiquidSchema(section.data);
       Back to Sections
     </a>
 
+    {/* Variant breadcrumb */}
+    {isVariant && parentSection && (
+      <div class="mb-4 flex items-center gap-2 text-sm">
+        <span class="text-gray-500">Variant of</span>
+        <a href={`/library/sections/${parentSection.data.slug}`} class="text-purple-600 hover:text-purple-700 font-medium inline-flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+          </svg>
+          {parentSection.data.name}
+        </a>
+      </div>
+    )}
+
     <div class="flex items-start justify-between">
       <div>
         <div class="flex items-center gap-3 mb-2">
-          <h1 class="text-2xl font-bold text-gray-900">{section.data.name}</h1>
-          <span class="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full capitalize">{section.data.category}</span>
+          <h1 class="text-2xl font-bold text-gray-900">{displayData?.name}</h1>
+          <span class="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded-full capitalize">{displayData?.category}</span>
+          {isVariant && (
+            <span class="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded-full">Variant</span>
+          )}
         </div>
-        <p class="text-gray-600">{section.data.description || 'No description'}</p>
+        <p class="text-gray-600">{displayData?.description || 'No description'}</p>
       </div>
-      <button class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
-        Add to Project
-      </button>
+      <div class="relative" id="add-to-project-container">
+        <button
+          id="add-to-project-btn"
+          class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add to Project
+        </button>
+        <div id="project-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+          <div class="p-3 border-b border-gray-100">
+            <p class="text-sm font-medium text-gray-700">Select a project</p>
+          </div>
+          <div class="max-h-64 overflow-y-auto">
+            {projectsWithoutSection.length === 0 ? (
+              <div class="p-4 text-sm text-gray-500 text-center">
+                {projects.length === 0 ? 'No projects yet' : 'Already added to all projects'}
+              </div>
+            ) : (
+              projectsWithoutSection.map((project) => (
+                <button
+                  data-project-slug={project.slug}
+                  data-section-slug={slug}
+                  class="add-section-btn w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center justify-between"
+                >
+                  <span class="font-medium text-gray-900">{project.name}</span>
+                  <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                </button>
+              ))
+            )}
+          </div>
+          {projects.length === 0 && (
+            <div class="p-3 border-t border-gray-100">
+              <a href="/projects/new" class="text-sm text-emerald-600 hover:text-emerald-700 font-medium">
+                Create a project first
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    const btn = document.getElementById('add-to-project-btn');
+    const dropdown = document.getElementById('project-dropdown');
+    const container = document.getElementById('add-to-project-container');
+
+    btn?.addEventListener('click', () => {
+      dropdown?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!container?.contains(e.target as Node)) {
+        dropdown?.classList.add('hidden');
+      }
+    });
+
+    document.querySelectorAll('.add-section-btn').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const projectSlug = target.dataset.projectSlug;
+        const sectionSlug = target.dataset.sectionSlug;
+
+        try {
+          const response = await fetch('/api/projects/add-section', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ projectSlug, sectionSlug }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            window.location.reload();
+          } else {
+            alert(data.error || 'Failed to add section');
+          }
+        } catch (error) {
+          alert('Failed to add section');
+        }
+      });
+    });
+  </script>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Preview Panel -->
@@ -69,10 +205,10 @@ const liquidSchema = generateLiquidSchema(section.data);
     <!-- Settings Panel -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200">
       <div class="px-6 py-4 border-b border-gray-200">
-        <h2 class="text-lg font-semibold text-gray-900">Settings ({section.data.settings.length})</h2>
+        <h2 class="text-lg font-semibold text-gray-900">Settings ({displayData?.settings?.length || 0})</h2>
       </div>
       <div class="divide-y divide-gray-100 max-h-64 overflow-y-auto">
-        {section.data.settings.map((setting) => (
+        {displayData?.settings?.map((setting) => (
           <div class="px-6 py-3">
             <div class="flex items-center justify-between">
               <div>
@@ -86,6 +222,38 @@ const liquidSchema = generateLiquidSchema(section.data);
       </div>
     </div>
   </div>
+
+  {/* Variants of this section */}
+  {sectionVariants.length > 0 && (
+    <div class="mt-6 bg-white rounded-xl shadow-sm border border-gray-200">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-900">Variants ({sectionVariants.length})</h2>
+      </div>
+      <div class="divide-y divide-gray-100">
+        {sectionVariants.map((variant) => (
+          <a
+            href={`/library/sections/${variant.slug}`}
+            class="px-6 py-4 flex items-center justify-between hover:bg-purple-50 transition-colors group"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-purple-100 rounded flex items-center justify-center">
+                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900 group-hover:text-purple-700">{variant.name}</p>
+                <p class="text-sm text-gray-500">{variant.description || 'No description'}</p>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
 
   <!-- Liquid Schema Code -->
   <div class="mt-6 bg-white rounded-xl shadow-sm border border-gray-200">
@@ -106,10 +274,36 @@ const liquidSchema = generateLiquidSchema(section.data);
   <!-- Usage in Projects -->
   <div class="mt-6 bg-white rounded-xl shadow-sm border border-gray-200">
     <div class="px-6 py-4 border-b border-gray-200">
-      <h2 class="text-lg font-semibold text-gray-900">Used in Projects</h2>
+      <h2 class="text-lg font-semibold text-gray-900">Used in Projects ({projectsWithSection.length})</h2>
     </div>
-    <div class="p-6 text-center text-gray-500">
-      <p>Not used in any projects yet.</p>
-    </div>
+    {projectsWithSection.length === 0 ? (
+      <div class="p-6 text-center text-gray-500">
+        <p>Not used in any projects yet.</p>
+      </div>
+    ) : (
+      <div class="divide-y divide-gray-100">
+        {projectsWithSection.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            class="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-emerald-100 rounded flex items-center justify-center">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900">{project.name}</p>
+                <p class="text-sm text-gray-500">{project.status}</p>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    )}
   </div>
 </Dashboard>

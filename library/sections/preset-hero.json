@@ -1,0 +1,362 @@
+{
+  "name": "Preset: Hero",
+  "slug": "preset-hero",
+  "description": "section",
+  "category": "hero",
+  "previewImage": "/previews/sections/preset-hero.png",
+  "settings": [
+    {
+      "id": "badge_text",
+      "type": "text",
+      "label": "Badge text",
+      "default": "New: Dazzle™ 2 Now Available"
+    },
+    {
+      "id": "badge_icon",
+      "type": "select",
+      "label": "Badge icon",
+      "default": "star"
+    },
+    {
+      "id": "since_text",
+      "type": "text",
+      "label": "Since text",
+      "default": "Made in USA Since 1994"
+    },
+    {
+      "id": "title_prefix",
+      "type": "text",
+      "label": "Title prefix",
+      "default": "Reduce Coolant Costs by"
+    },
+    {
+      "id": "title_highlight",
+      "type": "text",
+      "label": "Highlighted text",
+      "default": "Up to 50%"
+    },
+    {
+      "id": "title_suffix",
+      "type": "text",
+      "label": "Title suffix",
+      "default": "with Automated Fluid Management"
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description",
+      "default": "Industry-leading oil skimmers and coolant automation systems trusted by thousands of machine shops worldwide. American-made quality backed by a free lifetime warranty."
+    },
+    {
+      "id": "primary_button_text",
+      "type": "text",
+      "label": "Button text",
+      "default": "Explore Dazzle™ Systems"
+    },
+    {
+      "id": "primary_button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "secondary_button_text",
+      "type": "text",
+      "label": "Button text",
+      "default": "Browse All Products"
+    },
+    {
+      "id": "secondary_button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "secondary_button_icon",
+      "type": "select",
+      "label": "Button icon",
+      "default": "cube"
+    },
+    {
+      "id": "show_stats",
+      "type": "checkbox",
+      "label": "Show stats",
+      "default": true
+    },
+    {
+      "id": "showcase_image",
+      "type": "image_picker",
+      "label": "Showcase image"
+    },
+    {
+      "id": "showcase_icon",
+      "type": "select",
+      "label": "Showcase icon (if no image)",
+      "default": "cog"
+    },
+    {
+      "id": "showcase_badge",
+      "type": "text",
+      "label": "Showcase badge",
+      "default": "Best Seller"
+    },
+    {
+      "id": "showcase_title",
+      "type": "text",
+      "label": "Showcase title",
+      "default": "DAZZLE™ 1"
+    },
+    {
+      "id": "showcase_subtitle",
+      "type": "text",
+      "label": "Showcase subtitle",
+      "default": "Modular Automated Sump Management"
+    },
+    {
+      "id": "showcase_price",
+      "type": "text",
+      "label": "Showcase price",
+      "default": "Starting at $682"
+    },
+    {
+      "id": "showcase_price_suffix",
+      "type": "text",
+      "label": "Price suffix",
+      "default": "USD"
+    },
+    {
+      "id": "video_url",
+      "type": "video_url",
+      "label": "Video URL",
+      "info": "YouTube or Vimeo URL"
+    },
+    {
+      "id": "video_button_text",
+      "type": "text",
+      "label": "Video button text",
+      "default": "Watch Demo"
+    },
+    {
+      "id": "show_trusted_by",
+      "type": "checkbox",
+      "label": "Show trusted by section",
+      "default": true
+    },
+    {
+      "id": "trusted_label",
+      "type": "text",
+      "label": "Trusted by label",
+      "default": "Trusted by industry leaders"
+    },
+    {
+      "id": "show_floating_cards",
+      "type": "checkbox",
+      "label": "Show floating cards",
+      "default": true
+    },
+    {
+      "id": "show_grid_background",
+      "type": "checkbox",
+      "label": "Show animated grid",
+      "default": true
+    },
+    {
+      "id": "show_particles",
+      "type": "checkbox",
+      "label": "Show floating particles",
+      "default": true
+    },
+    {
+      "id": "color_primary",
+      "type": "color",
+      "label": "Primary color",
+      "default": "#003d79"
+    },
+    {
+      "id": "color_primary_light",
+      "type": "color",
+      "label": "Primary light",
+      "default": "#0056a8"
+    },
+    {
+      "id": "color_accent",
+      "type": "color",
+      "label": "Accent color",
+      "default": "#0077cc"
+    },
+    {
+      "id": "color_highlight",
+      "type": "color",
+      "label": "Highlight color",
+      "default": "#00a3e0"
+    },
+    {
+      "id": "color_cta",
+      "type": "color",
+      "label": "CTA button color",
+      "default": "#ff6b00"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "id": "stat_value",
+          "type": "number",
+          "label": "Value",
+          "default": 30
+        },
+        {
+          "id": "stat_suffix",
+          "type": "text",
+          "label": "Suffix",
+          "default": "+"
+        },
+        {
+          "id": "stat_label",
+          "type": "text",
+          "label": "Label",
+          "default": "Years of Innovation"
+        }
+      ]
+    },
+    {
+      "type": "floating_card",
+      "name": "Floating Card",
+      "limit": 3,
+      "settings": [
+        {
+          "id": "card_icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "shield-check"
+        },
+        {
+          "id": "card_title",
+          "type": "text",
+          "label": "Title",
+          "default": "Lifetime Warranty"
+        },
+        {
+          "id": "card_highlight",
+          "type": "text",
+          "label": "Highlight text"
+        },
+        {
+          "id": "card_subtitle",
+          "type": "text",
+          "label": "Subtitle",
+          "default": "On all skimmers"
+        }
+      ]
+    },
+    {
+      "type": "trusted_logo",
+      "name": "Trusted Logo",
+      "settings": [
+        {
+          "id": "logo_image",
+          "type": "image_picker",
+          "label": "Logo image"
+        },
+        {
+          "id": "logo_name",
+          "type": "text",
+          "label": "Company name",
+          "default": "Company Name"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Hero",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": 30,
+            "stat_suffix": "+",
+            "stat_label": "Years of Innovation"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": 50,
+            "stat_suffix": "K+",
+            "stat_label": "Skimmers Deployed"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": 120,
+            "stat_suffix": "+",
+            "stat_label": "Products Available"
+          }
+        },
+        {
+          "type": "floating_card",
+          "settings": {
+            "card_icon": "shield-check",
+            "card_title": "Lifetime Warranty",
+            "card_subtitle": "On all skimmers"
+          }
+        },
+        {
+          "type": "floating_card",
+          "settings": {
+            "card_icon": "trending-up",
+            "card_title": "ROI in 8 Months",
+            "card_highlight": "80%",
+            "card_subtitle": "coolant savings"
+          }
+        },
+        {
+          "type": "floating_card",
+          "settings": {
+            "card_icon": "star",
+            "card_title": "5-Star Rated",
+            "card_subtitle": "By machinists worldwide"
+          }
+        },
+        {
+          "type": "trusted_logo",
+          "settings": {
+            "logo_name": "General Motors"
+          }
+        },
+        {
+          "type": "trusted_logo",
+          "settings": {
+            "logo_name": "Boeing"
+          }
+        },
+        {
+          "type": "trusted_logo",
+          "settings": {
+            "logo_name": "Lockheed Martin"
+          }
+        },
+        {
+          "type": "trusted_logo",
+          "settings": {
+            "logo_name": "Caterpillar"
+          }
+        },
+        {
+          "type": "trusted_logo",
+          "settings": {
+            "logo_name": "John Deere"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-hero.liquid"
+  }
+}

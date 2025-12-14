@@ -1,0 +1,74 @@
+{
+  "name": "Preset: Newsletter CTA",
+  "slug": "preset-newsletter-cta",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/preset-newsletter-cta.png",
+  "settings": [
+    {
+      "id": "icon",
+      "type": "select",
+      "label": "Icon",
+      "default": "mail"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Stay in the Loop"
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description",
+      "default": "Subscribe to our newsletter for exclusive deals, maintenance tips, and new product announcements."
+    },
+    {
+      "id": "placeholder",
+      "type": "text",
+      "label": "Email placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "id": "form_action",
+      "type": "url",
+      "label": "Form action URL",
+      "info": "Leave blank to use default Shopify newsletter"
+    },
+    {
+      "id": "success_message",
+      "type": "text",
+      "label": "Success message",
+      "default": "Thank you for subscribing!"
+    },
+    {
+      "id": "error_message",
+      "type": "text",
+      "label": "Error message",
+      "default": "Something went wrong. Please try again."
+    },
+    {
+      "id": "trust_text",
+      "type": "text",
+      "label": "Trust text",
+      "default": "We respect your privacy. Unsubscribe at any time."
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Preset: Newsletter CTA"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/preset-newsletter-cta.liquid"
+  }
+}

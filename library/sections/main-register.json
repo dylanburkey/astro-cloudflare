@@ -1,0 +1,15 @@
+{
+  "name": "Register",
+  "slug": "main-register",
+  "description": "Register section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-register.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-register.liquid"
+  }
+}

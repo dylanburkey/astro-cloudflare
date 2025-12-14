@@ -1,0 +1,34 @@
+{
+  "name": "Product",
+  "slug": "main-product",
+  "description": "Product section from Forge Industrial theme",
+  "category": "product",
+  "previewImage": "/previews/sections/main-product.png",
+  "settings": [
+    {
+      "id": "variant_style",
+      "type": "select",
+      "label": "Variant selector style",
+      "default": "pills"
+    },
+    {
+      "id": "show_sku",
+      "type": "checkbox",
+      "label": "Show SKU",
+      "default": true
+    },
+    {
+      "id": "show_barcode",
+      "type": "checkbox",
+      "label": "Show barcode",
+      "default": false
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-product.liquid"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Cart drawer industrial",
+  "slug": "cart-drawer-industrial",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/cart-drawer-industrial.png",
+  "settings": [
+    {
+      "id": "show_order_note",
+      "type": "checkbox",
+      "label": "Show order note field",
+      "default": true
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/cart-drawer-industrial.liquid"
+  }
+}

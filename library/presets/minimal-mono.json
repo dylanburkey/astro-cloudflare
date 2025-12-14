@@ -1,0 +1,24 @@
+{
+  "name": "Minimal Mono",
+  "description": "Clean black and white minimalism",
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#333333",
+    "accent": "#666666",
+    "background": "#ffffff",
+    "background_secondary": "#fafafa",
+    "text": "#000000",
+    "text_secondary": "#666666"
+  },
+  "typography": {
+    "heading_font": "helvetica_n7",
+    "body_font": "helvetica_n4",
+    "heading_scale": 90,
+    "body_scale": 100
+  },
+  "buttons": {
+    "border_radius": 0,
+    "padding_vertical": 16,
+    "padding_horizontal": 32
+  }
+}

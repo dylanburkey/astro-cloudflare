@@ -1,0 +1,34 @@
+{
+  "name": "Collection industrial",
+  "slug": "collection-page-industrial",
+  "description": "section",
+  "category": "collection",
+  "previewImage": "/previews/sections/collection-page-industrial.png",
+  "settings": [
+    {
+      "id": "style",
+      "type": "select",
+      "label": "Design style",
+      "default": "welder"
+    },
+    {
+      "id": "products_per_page",
+      "type": "range",
+      "label": "Products per page",
+      "default": 12
+    },
+    {
+      "id": "columns",
+      "type": "range",
+      "label": "Columns on desktop",
+      "default": 3
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/collection-page-industrial.liquid"
+  }
+}

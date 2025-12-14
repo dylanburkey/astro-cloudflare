@@ -1,0 +1,62 @@
+{
+  "name": "AutoRAG Search",
+  "slug": "search-autorag",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/search-autorag.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "AI-Powered Search"
+    },
+    {
+      "id": "worker_url",
+      "type": "text",
+      "label": "Cloudflare Worker URL",
+      "info": "The endpoint for your RAG Vector DB. Leave empty to use standard Shopify search."
+    },
+    {
+      "id": "placeholder",
+      "type": "text",
+      "label": "Placeholder text",
+      "default": "Describe what you need..."
+    },
+    {
+      "id": "empty_text",
+      "type": "text",
+      "label": "Empty state text",
+      "default": "Ask a question like"
+    },
+    {
+      "id": "example_query",
+      "type": "text",
+      "label": "Example query",
+      "default": "Which welder is best for aluminum?"
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "AutoRAG Search"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/search-autorag.liquid"
+  }
+}

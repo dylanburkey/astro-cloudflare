@@ -1,0 +1,551 @@
+{
+  "name": "Builder Grid",
+  "slug": "builder-grid",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/builder-grid.png",
+  "settings": [
+    {
+      "id": "container_width",
+      "type": "range",
+      "label": "Container max width",
+      "default": 1200
+    },
+    {
+      "id": "gap_desktop",
+      "type": "range",
+      "label": "Grid gap (desktop)",
+      "default": 24
+    },
+    {
+      "id": "gap_mobile",
+      "type": "range",
+      "label": "Grid gap (mobile)",
+      "default": 16
+    },
+    {
+      "id": "vertical_align",
+      "type": "select",
+      "label": "Vertical alignment",
+      "default": "start"
+    },
+    {
+      "id": "bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "border_top",
+      "type": "range",
+      "label": "Border top",
+      "default": 0
+    },
+    {
+      "id": "border_bottom",
+      "type": "range",
+      "label": "Border bottom",
+      "default": 0
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "id": "margin_top",
+      "type": "range",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "id": "margin_bottom",
+      "type": "range",
+      "label": "Margin bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Heading",
+          "default": "Section Heading"
+        },
+        {
+          "id": "tag",
+          "type": "select",
+          "label": "Heading tag",
+          "default": "h2"
+        },
+        {
+          "id": "size",
+          "type": "select",
+          "label": "Size",
+          "default": "text-lg"
+        },
+        {
+          "id": "color",
+          "type": "color",
+          "label": "Color"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "id": "content",
+          "type": "richtext",
+          "label": "Content",
+          "default": "<p>Add your text content here.</p>"
+        },
+        {
+          "id": "size",
+          "type": "select",
+          "label": "Size",
+          "default": "text-base"
+        },
+        {
+          "id": "color",
+          "type": "color",
+          "label": "Color"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "caption",
+          "type": "text",
+          "label": "Caption"
+        },
+        {
+          "id": "card_style",
+          "type": "checkbox",
+          "label": "Card style (with shadow)",
+          "default": false
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "50"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "center"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Learn More"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "style",
+          "type": "select",
+          "label": "Style",
+          "default": "primary"
+        },
+        {
+          "id": "size",
+          "type": "select",
+          "label": "Size",
+          "default": "md"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Column width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "id": "video",
+          "type": "video",
+          "label": "Video (autoplay loop)"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Or external URL"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "center"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": [
+        {
+          "id": "height",
+          "type": "range",
+          "label": "Height",
+          "default": 40
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": true
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "id": "thickness",
+          "type": "range",
+          "label": "Thickness",
+          "default": 1
+        },
+        {
+          "id": "color",
+          "type": "color",
+          "label": "Color"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "center"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": true
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "name": "Custom HTML",
+      "settings": [
+        {
+          "id": "html",
+          "type": "html",
+          "label": "HTML"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid",
+      "settings": [
+        {
+          "id": "liquid",
+          "type": "liquid",
+          "label": "Liquid code"
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "100"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    },
+    {
+      "type": "icon_text",
+      "name": "Icon + Text",
+      "settings": [
+        {
+          "id": "icon",
+          "type": "select",
+          "label": "Icon",
+          "default": "check"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Feature Title"
+        },
+        {
+          "id": "text",
+          "type": "textarea",
+          "label": "Text",
+          "default": "Description of this feature or benefit."
+        },
+        {
+          "id": "width",
+          "type": "select",
+          "label": "Width",
+          "default": "33"
+        },
+        {
+          "id": "align",
+          "type": "select",
+          "label": "Alignment",
+          "default": "left"
+        },
+        {
+          "id": "new_line",
+          "type": "checkbox",
+          "label": "Start new row",
+          "default": false
+        },
+        {
+          "id": "vertical_align",
+          "type": "select",
+          "label": "Vertical alignment",
+          "default": "inherit"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Builder Grid",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "text": "Build Your Page",
+            "align": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "settings": {
+            "content": "<p>Add blocks to create your custom layout. Each block can span different column widths.</p>",
+            "align": "center"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/builder-grid.liquid"
+  }
+}

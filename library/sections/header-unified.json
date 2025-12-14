@@ -1,0 +1,197 @@
+{
+  "name": "Header (Unified)",
+  "slug": "header-unified",
+  "description": "div",
+  "category": "header",
+  "previewImage": "/previews/sections/header-unified.png",
+  "settings": [
+    {
+      "id": "logo",
+      "type": "image_picker",
+      "label": "Logo image"
+    },
+    {
+      "id": "logo_width",
+      "type": "range",
+      "label": "Logo base width",
+      "default": 150
+    },
+    {
+      "id": "logo_scale",
+      "type": "range",
+      "label": "Logo scale",
+      "default": 100,
+      "info": "Adjust logo size without changing base width"
+    },
+    {
+      "id": "menu",
+      "type": "link_list",
+      "label": "Main menu",
+      "default": "main-menu",
+      "info": "Use nested menus in Shopify Navigation for mega menu dropdowns"
+    },
+    {
+      "id": "sticky_header",
+      "type": "checkbox",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "id": "search_style",
+      "type": "select",
+      "label": "Search display style",
+      "default": "icon",
+      "info": "Choose how search appears in the header"
+    },
+    {
+      "id": "search_placeholder",
+      "type": "text",
+      "label": "Search placeholder text",
+      "default": "Search products, articles..."
+    },
+    {
+      "id": "show_search_filter",
+      "type": "checkbox",
+      "label": "Show search type filter",
+      "default": true,
+      "info": "Only applies to search bar above navigation"
+    },
+    {
+      "id": "filter_all_label",
+      "type": "text",
+      "label": "Filter: All label",
+      "default": "All"
+    },
+    {
+      "id": "filter_products_label",
+      "type": "text",
+      "label": "Filter: Products label",
+      "default": "Products"
+    },
+    {
+      "id": "filter_articles_label",
+      "type": "text",
+      "label": "Filter: Articles label",
+      "default": "Articles"
+    },
+    {
+      "id": "filter_pages_label",
+      "type": "text",
+      "label": "Filter: Pages label",
+      "default": "Pages"
+    },
+    {
+      "id": "show_account",
+      "type": "checkbox",
+      "label": "Show account link",
+      "default": true
+    },
+    {
+      "id": "show_cart",
+      "type": "checkbox",
+      "label": "Show cart icon",
+      "default": true
+    },
+    {
+      "id": "header_bg",
+      "type": "color",
+      "label": "Header background",
+      "default": "#ffffff"
+    },
+    {
+      "id": "header_text",
+      "type": "color",
+      "label": "Header text",
+      "default": "#1a1a1a"
+    },
+    {
+      "id": "header_border",
+      "type": "color",
+      "label": "Header border",
+      "default": "#e5e5e5"
+    },
+    {
+      "id": "search_bar_bg",
+      "type": "color",
+      "label": "Search bar background",
+      "default": "#f5f5f5"
+    },
+    {
+      "id": "search_bar_text",
+      "type": "color",
+      "label": "Search bar text",
+      "default": "#333333"
+    },
+    {
+      "id": "dropdown_bg",
+      "type": "color",
+      "label": "Dropdown background",
+      "default": "#ffffff"
+    },
+    {
+      "id": "dropdown_text",
+      "type": "color",
+      "label": "Dropdown text",
+      "default": "#333333"
+    },
+    {
+      "id": "dropdown_hover",
+      "type": "color",
+      "label": "Dropdown hover background",
+      "default": "#f5f5f5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_card",
+      "name": "Featured Card",
+      "settings": [
+        {
+          "id": "parent_menu",
+          "type": "text",
+          "label": "Parent menu title"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Featured"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Featured Product"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Description"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Header (Unified)",
+      "settings": {
+        "search_style": "bar_above"
+      }
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/header-unified.liquid"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Account",
+  "slug": "main-account",
+  "description": "Account section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-account.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-account.liquid"
+  }
+}

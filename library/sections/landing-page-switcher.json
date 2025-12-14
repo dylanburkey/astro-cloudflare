@@ -1,0 +1,125 @@
+{
+  "name": "Landing Page Switcher",
+  "slug": "landing-page-switcher",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/landing-page-switcher.png",
+  "settings": [
+    {
+      "id": "override_style",
+      "type": "select",
+      "label": "Override landing page style",
+      "default": "use_theme_setting",
+      "info": "Override the theme-level landing page style setting. Use 'Use Theme Setting' to respect the global setting."
+    },
+    {
+      "id": "default_hero_title",
+      "type": "text",
+      "label": "Hero title",
+      "default": "Precision Welding Systems"
+    },
+    {
+      "id": "default_hero_text",
+      "type": "textarea",
+      "label": "Hero text",
+      "default": "Industry-leading technology for the toughest jobs. Engineered for performance and durability in the field."
+    },
+    {
+      "id": "default_hero_button_label",
+      "type": "text",
+      "label": "Hero button label",
+      "default": "Explore Equipment"
+    },
+    {
+      "id": "default_hero_button_link",
+      "type": "url",
+      "label": "Hero button link"
+    },
+    {
+      "id": "tech_hero_badge",
+      "type": "text",
+      "label": "Badge text",
+      "default": "Now Available"
+    },
+    {
+      "id": "tech_hero_title",
+      "type": "text",
+      "label": "Hero title",
+      "default": "The Future of Intelligence"
+    },
+    {
+      "id": "tech_hero_subtitle",
+      "type": "textarea",
+      "label": "Hero subtitle",
+      "default": "Experience next-generation AI that learns, adapts, and evolves with your business needs."
+    },
+    {
+      "id": "tech_hero_button_label",
+      "type": "text",
+      "label": "Primary button label",
+      "default": "Start Free Trial"
+    },
+    {
+      "id": "tech_hero_button_link",
+      "type": "url",
+      "label": "Primary button link"
+    },
+    {
+      "id": "impact_hero_badge",
+      "type": "text",
+      "label": "Badge text",
+      "default": "New Collection"
+    },
+    {
+      "id": "impact_hero_title",
+      "type": "text",
+      "label": "Hero title",
+      "default": "PUSH YOUR LIMITS"
+    },
+    {
+      "id": "impact_hero_subtitle",
+      "type": "textarea",
+      "label": "Hero subtitle",
+      "default": "Premium performance gear engineered for athletes who refuse to settle."
+    },
+    {
+      "id": "impact_collection",
+      "type": "collection",
+      "label": "Featured collection"
+    },
+    {
+      "id": "artisan_hero_eyebrow",
+      "type": "text",
+      "label": "Eyebrow text",
+      "default": "Handcrafted with love"
+    },
+    {
+      "id": "artisan_hero_title",
+      "type": "text",
+      "label": "Hero title",
+      "default": "Artisan Ceramics for Everyday Living"
+    },
+    {
+      "id": "artisan_hero_subtitle",
+      "type": "textarea",
+      "label": "Hero subtitle",
+      "default": "Each piece is carefully crafted by hand in our Portland studio, bringing warmth and character to your home."
+    },
+    {
+      "id": "artisan_collection",
+      "type": "collection",
+      "label": "Featured collection"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Landing Page Switcher"
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/landing-page-switcher.liquid"
+  }
+}

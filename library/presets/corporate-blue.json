@@ -1,0 +1,24 @@
+{
+  "name": "Corporate Blue",
+  "description": "Professional and trustworthy corporate style",
+  "colors": {
+    "primary": "#0066cc",
+    "secondary": "#003366",
+    "accent": "#00a3e0",
+    "background": "#ffffff",
+    "background_secondary": "#f8fafc",
+    "text": "#1e293b",
+    "text_secondary": "#64748b"
+  },
+  "typography": {
+    "heading_font": "inter_n6",
+    "body_font": "inter_n4",
+    "heading_scale": 100,
+    "body_scale": 100
+  },
+  "buttons": {
+    "border_radius": 6,
+    "padding_vertical": 12,
+    "padding_horizontal": 24
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Modern Dark",
+  "description": "Sleek dark mode with vibrant accents",
+  "colors": {
+    "primary": "#6366f1",
+    "secondary": "#8b5cf6",
+    "accent": "#22d3ee",
+    "background": "#0f172a",
+    "background_secondary": "#1e293b",
+    "text": "#f1f5f9",
+    "text_secondary": "#94a3b8"
+  },
+  "typography": {
+    "heading_font": "space_grotesk_n7",
+    "body_font": "space_grotesk_n4",
+    "heading_scale": 100,
+    "body_scale": 100
+  },
+  "buttons": {
+    "border_radius": 8,
+    "padding_vertical": 12,
+    "padding_horizontal": 24
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "name": "Ticker strip",
+  "slug": "ticker-strip",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/ticker-strip.png",
+  "settings": [
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#ff4d00"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#0a0a0a"
+    },
+    {
+      "id": "separator",
+      "type": "text",
+      "label": "Separator character",
+      "default": ">>>"
+    },
+    {
+      "id": "animation_speed",
+      "type": "range",
+      "label": "Animation speed",
+      "default": 30,
+      "info": "Lower = faster"
+    },
+    {
+      "id": "direction",
+      "type": "select",
+      "label": "Direction",
+      "default": "normal"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker item",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Text",
+          "default": "ALERT: New products available"
+        },
+        {
+          "id": "icon",
+          "type": "text",
+          "label": "Icon (emoji or text)"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Ticker strip",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "SERIES_X MOTORS RESTOCKED"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "GLOBAL SHIPPING PROTOCOLS ACTIVE"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "NEW FIRMWARE V2.4 AVAILABLE"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/ticker-strip.liquid"
+  }
+}

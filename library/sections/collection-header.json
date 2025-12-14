@@ -1,0 +1,28 @@
+{
+  "name": "Collection Header",
+  "slug": "collection-header",
+  "description": "section",
+  "category": "collection",
+  "previewImage": "/previews/sections/collection-header.png",
+  "settings": [
+    {
+      "id": "show_title",
+      "type": "checkbox",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "id": "show_description",
+      "type": "checkbox",
+      "label": "Show collection description",
+      "default": true
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/collection-header.liquid"
+  }
+}

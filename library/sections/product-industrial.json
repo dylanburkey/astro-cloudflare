@@ -1,0 +1,40 @@
+{
+  "name": "Product industrial",
+  "slug": "product-industrial",
+  "description": "section",
+  "category": "product",
+  "previewImage": "/previews/sections/product-industrial.png",
+  "settings": [
+    {
+      "id": "style",
+      "type": "select",
+      "label": "Design style",
+      "default": "welder"
+    },
+    {
+      "id": "gallery_height",
+      "type": "range",
+      "label": "Main image height",
+      "default": 500
+    },
+    {
+      "id": "thumbnail_height",
+      "type": "range",
+      "label": "Thumbnail height",
+      "default": 120
+    },
+    {
+      "id": "shipping_text",
+      "type": "textarea",
+      "label": "Shipping info text",
+      "default": "Standard ground shipping: 5-7 business days. Express shipping available at checkout. International shipping rates calculated at checkout."
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/product-industrial.liquid"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "PWA Install Banner",
+  "slug": "pwa-install-banner",
+  "description": "PWA Install Banner section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/pwa-install-banner.png",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Banner title",
+      "default": "Install Our App"
+    },
+    {
+      "id": "description",
+      "type": "text",
+      "label": "Banner description",
+      "default": "Add to your home screen for quick access"
+    },
+    {
+      "id": "install_label",
+      "type": "text",
+      "label": "Install button label",
+      "default": "Install"
+    },
+    {
+      "id": "dismiss_label",
+      "type": "text",
+      "label": "Dismiss button label",
+      "default": "Not Now"
+    }
+  ],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/pwa-install-banner.liquid"
+  }
+}

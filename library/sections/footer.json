@@ -1,0 +1,122 @@
+{
+  "name": "Footer",
+  "slug": "footer",
+  "description": "section-footer",
+  "category": "footer",
+  "previewImage": "/previews/sections/footer.png",
+  "settings": [
+    {
+      "id": "show_newsletter",
+      "type": "checkbox",
+      "label": "Show newsletter signup",
+      "default": true
+    },
+    {
+      "id": "newsletter_heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Stay Connected"
+    },
+    {
+      "id": "newsletter_text",
+      "type": "text",
+      "label": "Description",
+      "default": "Get updates on new products and industry news."
+    },
+    {
+      "id": "newsletter_placeholder",
+      "type": "text",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "id": "newsletter_button",
+      "type": "text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "id": "show_payment_icons",
+      "type": "checkbox",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Quick Links"
+        },
+        {
+          "id": "menu",
+          "type": "link_list",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>Add your custom text here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social links",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Follow Us"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "heading": "Support"
+          }
+        },
+        {
+          "type": "social"
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/footer.liquid"
+  }
+}

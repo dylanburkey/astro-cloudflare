@@ -1,0 +1,15 @@
+{
+  "name": "Page Content",
+  "slug": "page-content",
+  "description": "Page Content section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/page-content.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/page-content.liquid"
+  }
+}

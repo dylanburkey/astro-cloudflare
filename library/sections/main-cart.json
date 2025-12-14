@@ -1,0 +1,15 @@
+{
+  "name": "Cart",
+  "slug": "main-cart",
+  "description": "Cart section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/main-cart.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/main-cart.liquid"
+  }
+}

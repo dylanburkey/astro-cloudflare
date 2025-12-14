@@ -1,0 +1,137 @@
+{
+  "name": "Smart Grid",
+  "slug": "smart-grid",
+  "description": "section",
+  "category": "content",
+  "previewImage": "/previews/sections/smart-grid.png",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Core Solutions"
+    },
+    {
+      "id": "layout",
+      "type": "select",
+      "label": "Layout",
+      "default": "highlight"
+    },
+    {
+      "id": "use_surface_bg",
+      "type": "checkbox",
+      "label": "Use surface background",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "show_placeholder",
+          "type": "checkbox",
+          "label": "Show placeholder if no image",
+          "default": false
+        },
+        {
+          "id": "tag",
+          "type": "text",
+          "label": "Tag / Category",
+          "default": "Category"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Card Title"
+        },
+        {
+          "id": "text",
+          "type": "textarea",
+          "label": "Description"
+        },
+        {
+          "id": "button_label",
+          "type": "text",
+          "label": "Button label",
+          "default": "View Specs"
+        },
+        {
+          "id": "button_link",
+          "type": "url",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        },
+        {
+          "id": "show_vendor",
+          "type": "checkbox",
+          "label": "Show vendor",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Smart Grid",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "tag": "Heavy Equipment",
+            "heading": "MIG-250 Pro Series",
+            "text": "High performance welding for industrial fabrication.",
+            "button_label": "View Specs"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "heading": "Safety Gear",
+            "text": "Helmets, gloves, and fume extraction."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "heading": "Automation",
+            "text": "Robotic cells and Cobot integration."
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/smart-grid.liquid"
+  }
+}

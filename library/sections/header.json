@@ -1,0 +1,73 @@
+{
+  "name": "Header",
+  "slug": "header",
+  "description": "section-header",
+  "category": "header",
+  "previewImage": "/previews/sections/header.png",
+  "settings": [
+    {
+      "id": "show_search",
+      "type": "checkbox",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "id": "show_account",
+      "type": "checkbox",
+      "label": "Show account link",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menu item",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text",
+          "label": "Label",
+          "default": "Link"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "maxBlocks": 50,
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "Equipment",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "Products",
+            "link": "/collections"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "label": "Support",
+            "link": "/pages/contact"
+          }
+        }
+      ]
+    }
+  ],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/header.liquid"
+  }
+}

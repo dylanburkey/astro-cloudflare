@@ -1,0 +1,47 @@
+{%- comment -%}
+  CSS Custom Properties - Generated from theme settings
+{%- endcomment -%}
+
+{% style %}
+  :root {
+    /* Colors */
+    --color-primary: {{ settings.color_primary }};
+    --color-secondary: {{ settings.color_secondary }};
+    --color-background: {{ settings.color_background }};
+    --color-background-secondary: {{ settings.color_background_secondary }};
+    --color-text: {{ settings.color_text }};
+    --color-text-secondary: {{ settings.color_text_secondary }};
+    --color-border: {{ settings.color_border }};
+    --color-success: {{ settings.color_success }};
+    --color-warning: {{ settings.color_warning }};
+    --color-error: {{ settings.color_error }};
+
+    /* Button colors */
+    --color-button-bg: {{ settings.color_button_background }};
+    --color-button-text: {{ settings.color_button_text }};
+
+    /* Typography */
+    --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    --font-heading-weight: {{ settings.font_heading.weight }};
+    --font-heading-style: {{ settings.font_heading.style }};
+    --font-heading-scale: {{ settings.font_heading_scale | divided_by: 100.0 }};
+
+    --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-body-style: {{ settings.font_body.style }};
+    --font-body-scale: {{ settings.font_body_scale | divided_by: 100.0 }};
+
+    /* Layout */
+    --page-width: {{ settings.page_width }}px;
+    --spacing-sections: {{ settings.spacing_sections }}px;
+    --grid-gap: {{ settings.grid_gap }}px;
+
+    /* Components */
+    --button-radius: {{ settings.button_border_radius }}px;
+    --input-radius: {{ settings.input_border_radius }}px;
+    --card-radius: {{ settings.card_border_radius }}px;
+  }
+{% endstyle %}
+
+{{ settings.font_heading | font_face: font_display: 'swap' }}
+{{ settings.font_body | font_face: font_display: 'swap' }}

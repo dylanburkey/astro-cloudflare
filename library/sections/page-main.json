@@ -1,0 +1,15 @@
+{
+  "name": "Page Main",
+  "slug": "page-main",
+  "description": "Page Main section from Forge Industrial theme",
+  "category": "content",
+  "previewImage": "/previews/sections/page-main.png",
+  "settings": [],
+  "blocks": [],
+  "maxBlocks": 50,
+  "presets": [],
+  "_source": {
+    "theme": "forge-industrial",
+    "path": "sections/page-main.liquid"
+  }
+}
