@@ -1,0 +1,500 @@
+---
+import ColorPicker from './ColorPicker.astro';
+import FontSelector from './FontSelector.astro';
+import type { CustomPresetData, PresetColors, PresetTypography, PresetButtons } from '../../lib/db/schema';
+
+interface Props {
+  preset?: CustomPresetData;
+  mode: 'create' | 'edit';
+}
+
+const { preset, mode } = Astro.props;
+
+// Default values
+const defaultColors: PresetColors = {
+  primary: '#2563eb',
+  secondary: '#64748b',
+  accent: '#f59e0b',
+  background: '#ffffff',
+  background_secondary: '#f8fafc',
+  text: '#1e293b',
+  text_secondary: '#64748b',
+};
+
+const defaultTypography: PresetTypography = {
+  heading_font: 'Inter',
+  body_font: 'Inter',
+  heading_scale: 100,
+  body_scale: 100,
+};
+
+const defaultButtons: PresetButtons = {
+  border_radius: 8,
+  padding_vertical: 12,
+  padding_horizontal: 24,
+};
+
+const colors = preset?.colors ?? defaultColors;
+const typography = preset?.typography ?? defaultTypography;
+const buttons = preset?.buttons ?? defaultButtons;
+---
+
+<form id="preset-form" class="preset-editor">
+  <div class="editor-section">
+    <h3 class="section-title">Basic Info</h3>
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={preset?.name ?? ''}
+        required
+        placeholder="My Custom Preset"
+      />
+    </div>
+    <div class="form-field">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="2"
+        placeholder="A brief description of this preset"
+      >{preset?.description ?? ''}</textarea>
+    </div>
+    <div class="form-field">
+      <label class="checkbox-label">
+        <input
+          type="checkbox"
+          name="isGlobal"
+          checked={preset?.isGlobal ?? false}
+        />
+        <span>Make available to all projects</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="editor-section">
+    <h3 class="section-title">Colors</h3>
+    <div class="color-grid">
+      <ColorPicker
+        id="color_primary"
+        name="colors.primary"
+        label="Primary"
+        value={colors.primary}
+        description="Main brand color"
+      />
+      <ColorPicker
+        id="color_secondary"
+        name="colors.secondary"
+        label="Secondary"
+        value={colors.secondary}
+        description="Supporting color"
+      />
+      <ColorPicker
+        id="color_accent"
+        name="colors.accent"
+        label="Accent"
+        value={colors.accent}
+        description="Highlight color"
+      />
+      <ColorPicker
+        id="color_background"
+        name="colors.background"
+        label="Background"
+        value={colors.background}
+        description="Main background"
+      />
+      <ColorPicker
+        id="color_background_secondary"
+        name="colors.background_secondary"
+        label="Secondary Background"
+        value={colors.background_secondary}
+        description="Alternate background"
+      />
+      <ColorPicker
+        id="color_text"
+        name="colors.text"
+        label="Text"
+        value={colors.text}
+        description="Primary text color"
+      />
+      <ColorPicker
+        id="color_text_secondary"
+        name="colors.text_secondary"
+        label="Secondary Text"
+        value={colors.text_secondary}
+        description="Muted text color"
+      />
+    </div>
+  </div>
+
+  <div class="editor-section">
+    <h3 class="section-title">Typography</h3>
+    <div class="typography-grid">
+      <FontSelector
+        id="typography_heading_font"
+        name="typography.heading_font"
+        label="Heading Font"
+        value={typography.heading_font}
+        type="heading"
+      />
+      <FontSelector
+        id="typography_body_font"
+        name="typography.body_font"
+        label="Body Font"
+        value={typography.body_font}
+        type="body"
+      />
+    </div>
+    <div class="range-grid">
+      <div class="form-field">
+        <label for="typography_heading_scale">Heading Scale: <span id="heading-scale-value">{typography.heading_scale}%</span></label>
+        <input
+          type="range"
+          id="typography_heading_scale"
+          name="typography.heading_scale"
+          min="75"
+          max="150"
+          value={typography.heading_scale}
+        />
+      </div>
+      <div class="form-field">
+        <label for="typography_body_scale">Body Scale: <span id="body-scale-value">{typography.body_scale}%</span></label>
+        <input
+          type="range"
+          id="typography_body_scale"
+          name="typography.body_scale"
+          min="75"
+          max="150"
+          value={typography.body_scale}
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="editor-section">
+    <h3 class="section-title">Buttons</h3>
+    <div class="button-preview-container">
+      <div class="button-fields">
+        <div class="form-field">
+          <label for="button_border_radius">Border Radius: <span id="radius-value">{buttons.border_radius}px</span></label>
+          <input
+            type="range"
+            id="button_border_radius"
+            name="buttons.border_radius"
+            min="0"
+            max="50"
+            value={buttons.border_radius}
+          />
+        </div>
+        <div class="form-field">
+          <label for="button_padding_vertical">Vertical Padding: <span id="v-padding-value">{buttons.padding_vertical}px</span></label>
+          <input
+            type="range"
+            id="button_padding_vertical"
+            name="buttons.padding_vertical"
+            min="4"
+            max="24"
+            value={buttons.padding_vertical}
+          />
+        </div>
+        <div class="form-field">
+          <label for="button_padding_horizontal">Horizontal Padding: <span id="h-padding-value">{buttons.padding_horizontal}px</span></label>
+          <input
+            type="range"
+            id="button_padding_horizontal"
+            name="buttons.padding_horizontal"
+            min="8"
+            max="48"
+            value={buttons.padding_horizontal}
+          />
+        </div>
+      </div>
+      <div class="button-preview">
+        <button
+          type="button"
+          id="preview-button"
+          style={`
+            border-radius: ${buttons.border_radius}px;
+            padding: ${buttons.padding_vertical}px ${buttons.padding_horizontal}px;
+            background-color: ${colors.primary};
+          `}
+        >
+          Sample Button
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="editor-actions">
+    <a href="/library/presets" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-primary">
+      {mode === 'create' ? 'Create Preset' : 'Save Changes'}
+    </button>
+  </div>
+</form>
+
+<script define:vars={{ mode, presetId: preset?.id }}>
+  const form = document.getElementById('preset-form');
+
+  // Range input value displays
+  const ranges = [
+    { input: 'typography_heading_scale', display: 'heading-scale-value', suffix: '%' },
+    { input: 'typography_body_scale', display: 'body-scale-value', suffix: '%' },
+    { input: 'button_border_radius', display: 'radius-value', suffix: 'px' },
+    { input: 'button_padding_vertical', display: 'v-padding-value', suffix: 'px' },
+    { input: 'button_padding_horizontal', display: 'h-padding-value', suffix: 'px' },
+  ];
+
+  ranges.forEach(({ input, display, suffix }) => {
+    const inputEl = document.getElementById(input);
+    const displayEl = document.getElementById(display);
+    if (inputEl && displayEl) {
+      inputEl.addEventListener('input', () => {
+        displayEl.textContent = inputEl.value + suffix;
+      });
+    }
+  });
+
+  // Button preview updates
+  const previewButton = document.getElementById('preview-button');
+  const borderRadius = document.getElementById('button_border_radius');
+  const vPadding = document.getElementById('button_padding_vertical');
+  const hPadding = document.getElementById('button_padding_horizontal');
+  const primaryColor = document.getElementById('color_primary');
+
+  function updateButtonPreview() {
+    if (!previewButton) return;
+    previewButton.style.borderRadius = borderRadius?.value + 'px';
+    previewButton.style.padding = `${vPadding?.value}px ${hPadding?.value}px`;
+    if (primaryColor) {
+      previewButton.style.backgroundColor = primaryColor.value;
+    }
+  }
+
+  [borderRadius, vPadding, hPadding, primaryColor].forEach((el) => {
+    el?.addEventListener('input', updateButtonPreview);
+  });
+
+  // Form submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get('name'),
+      description: formData.get('description') || undefined,
+      isGlobal: formData.get('isGlobal') === 'on',
+      colors: {
+        primary: formData.get('colors.primary'),
+        secondary: formData.get('colors.secondary'),
+        accent: formData.get('colors.accent'),
+        background: formData.get('colors.background'),
+        background_secondary: formData.get('colors.background_secondary'),
+        text: formData.get('colors.text'),
+        text_secondary: formData.get('colors.text_secondary'),
+      },
+      typography: {
+        heading_font: formData.get('typography.heading_font'),
+        body_font: formData.get('typography.body_font'),
+        heading_scale: parseInt(formData.get('typography.heading_scale'), 10),
+        body_scale: parseInt(formData.get('typography.body_scale'), 10),
+      },
+      buttons: {
+        border_radius: parseInt(formData.get('buttons.border_radius'), 10),
+        padding_vertical: parseInt(formData.get('buttons.padding_vertical'), 10),
+        padding_horizontal: parseInt(formData.get('buttons.padding_horizontal'), 10),
+      },
+    };
+
+    try {
+      const url = mode === 'create' ? '/api/presets/create' : `/api/presets/${presetId}`;
+      const method = mode === 'create' ? 'POST' : 'PUT';
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        window.location.href = `/library/presets/${result.preset?.slug || presetId}`;
+      } else {
+        alert(result.error || 'Failed to save preset');
+      }
+    } catch (error) {
+      alert('Failed to save preset');
+      console.error(error);
+    }
+  });
+</script>
+
+<style>
+  .preset-editor {
+    max-width: 800px;
+  }
+
+  .editor-section {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .form-field {
+    margin-bottom: 1rem;
+  }
+
+  .form-field label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-field input[type="text"],
+  .form-field textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+  }
+
+  .form-field input[type="text"]:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-field input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .checkbox-label input {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .typography-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .range-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .button-preview-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .button-preview {
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+  }
+
+  #preview-button {
+    color: white;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: default;
+    transition: all 0.15s;
+  }
+
+  .editor-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #1d4ed8;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+  }
+
+  .btn-secondary:hover {
+    background: #f8fafc;
+    color: #1e293b;
+  }
+
+  @media (max-width: 640px) {
+    .color-grid,
+    .typography-grid,
+    .range-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .button-preview-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import Dashboard from '../../../layouts/Dashboard.astro';
+import BuilderCanvas from '../../../components/builder/BuilderCanvas.astro';
+import { getProject, getProjectSections } from '../../../lib/project/create';
+import { getCollection } from 'astro:content';
+import { listAllPresets } from '../../../lib/presets/apply';
+import type { BuilderSection } from '../../../components/builder/builder-types';
+
+const { project: projectSlug } = Astro.params;
+
+const project = projectSlug ? await getProject(projectSlug, Astro.locals) : null;
+
+if (!project) {
+  return Astro.redirect('/projects');
+}
+
+// Get project sections with IDs for reordering
+const projectSections = await getProjectSections(projectSlug!, Astro.locals);
+
+// Get section metadata from content collection
+const allSections = await getCollection('sections');
+const sectionMap = new Map(allSections.map((s) => [s.data.slug, s.data]));
+
+// Combine DB data with content collection metadata
+const sections: BuilderSection[] = projectSections.map((ps) => {
+  const sectionData = sectionMap.get(ps.sectionSlug);
+  return {
+    id: ps.id,
+    sectionSlug: ps.sectionSlug,
+    position: ps.position,
+    name: sectionData?.name || ps.sectionSlug,
+    category: sectionData?.category || 'unknown',
+    description: sectionData?.description,
+  };
+});
+
+// Get all available presets
+const allPresets = await listAllPresets(Astro.locals);
+---
+
+<Dashboard title={`${project.name} - Builder`} activeNav="projects">
+  <div class="mb-4">
+    <a href={`/projects/${project.slug}`} class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Project
+    </a>
+  </div>
+
+  <BuilderCanvas
+    projectSlug={project.slug}
+    projectName={project.name}
+    sections={sections}
+    appliedPreset={project.appliedPreset}
+    availablePresets={allPresets}
+  />
+</Dashboard>
+
+<style>
+  /* Additional builder page styles */
+</style>

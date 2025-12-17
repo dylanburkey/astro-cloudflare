@@ -1,0 +1,731 @@
+---
+import SectionCard from './SectionCard.astro';
+import type { BuilderSection } from './builder-types';
+
+interface PresetInfo {
+  slug: string;
+  name: string;
+  description: string;
+  isCustom?: boolean;
+}
+
+interface Props {
+  projectSlug: string;
+  projectName: string;
+  sections: BuilderSection[];
+  appliedPreset?: string;
+  availablePresets?: PresetInfo[];
+}
+
+const { projectSlug, projectName, sections, appliedPreset, availablePresets = [] } = Astro.props;
+---
+
+<div class="builder-canvas" data-project-slug={projectSlug}>
+  <header class="builder-header">
+    <div class="header-info">
+      <h1 class="builder-title">{projectName}</h1>
+      <span class="section-count">{sections.length} sections</span>
+    </div>
+    <div class="header-actions">
+      <div class="viewport-controls">
+        <button type="button" class="viewport-btn active" data-viewport="desktop" title="Desktop view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2" />
+            <path d="M8 21h8M12 17v4" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="button" class="viewport-btn" data-viewport="tablet" title="Tablet view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="2" width="16" height="20" rx="2" stroke-width="2" />
+            <path d="M12 18h.01" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button type="button" class="viewport-btn" data-viewport="mobile" title="Mobile view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="5" y="2" width="14" height="20" rx="2" stroke-width="2" />
+            <path d="M12 18h.01" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <a href={`/library/sections?project=${projectSlug}`} class="add-section-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Section
+      </a>
+    </div>
+  </header>
+
+  <div class="preset-selector">
+    <label for="preset-select" class="preset-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+      Theme Preset:
+    </label>
+    <select id="preset-select" class="preset-dropdown" data-project-slug={projectSlug}>
+      <option value="">-- No Preset --</option>
+      {availablePresets.map((preset) => (
+        <option
+          value={preset.slug}
+          selected={appliedPreset === preset.slug}
+        >
+          {preset.name} {preset.isCustom ? '(Custom)' : ''}
+        </option>
+      ))}
+    </select>
+    <a href="/library/presets/new" class="create-preset-link" title="Create new preset">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="sections-container" data-sections-container>
+    {sections.length === 0 ? (
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+          </svg>
+        </div>
+        <h3 class="empty-title">No sections yet</h3>
+        <p class="empty-description">Add sections from the library to start building your theme.</p>
+        <a href={`/library/sections?project=${projectSlug}`} class="empty-action">
+          Browse Section Library
+        </a>
+      </div>
+    ) : (
+      sections.map((section) => (
+        <SectionCard
+          id={section.id}
+          sectionSlug={section.sectionSlug}
+          name={section.name}
+          category={section.category}
+          description={section.description}
+          position={section.position}
+          projectSlug={projectSlug}
+        />
+      ))
+    )}
+  </div>
+
+  <div class="drop-indicator" data-drop-indicator>
+    <div class="drop-line"></div>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+
+<script>
+  import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
+  import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
+  import { reorder } from '@atlaskit/pragmatic-drag-and-drop/reorder';
+
+  interface SectionElement extends HTMLElement {
+    dataset: {
+      sectionId: string;
+      sectionSlug: string;
+      position: string;
+    };
+  }
+
+  const canvas = document.querySelector('.builder-canvas') as HTMLElement;
+  const container = document.querySelector('[data-sections-container]') as HTMLElement;
+  const projectSlug = canvas?.dataset.projectSlug;
+
+  if (canvas && container && projectSlug) {
+    initBuilder();
+    initPresetSelector();
+  }
+
+  function initPresetSelector() {
+    const select = document.getElementById('preset-select') as HTMLSelectElement;
+    if (!select) return;
+
+    select.addEventListener('change', async () => {
+      const presetSlug = select.value;
+      const projSlug = select.dataset.projectSlug;
+
+      if (!projSlug) return;
+
+      try {
+        select.disabled = true;
+        const response = await fetch('/api/projects/apply-preset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ projectSlug: projSlug, presetSlug: presetSlug || null }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          showToast(presetSlug ? 'Preset applied' : 'Preset removed', 'success');
+          // Refresh previews to show new preset
+          const iframes = container.querySelectorAll('.section-preview') as NodeListOf<HTMLIFrameElement>;
+          iframes.forEach((iframe) => {
+            if (iframe.src) {
+              const url = new URL(iframe.src);
+              url.searchParams.set('preset', presetSlug || '');
+              url.searchParams.set('t', Date.now().toString()); // Cache bust
+              iframe.src = url.toString();
+            }
+          });
+        } else {
+          showToast(data.error || 'Failed to apply preset', 'error');
+        }
+      } catch {
+        showToast('Failed to apply preset', 'error');
+      } finally {
+        select.disabled = false;
+      }
+    });
+  }
+
+  function initBuilder() {
+    const sectionCards = container.querySelectorAll('.section-card') as NodeListOf<SectionElement>;
+    const cleanupFns: (() => void)[] = [];
+
+    // Make each card draggable
+    sectionCards.forEach((card) => {
+      const cleanup = combine(
+        draggable({
+          element: card,
+          getInitialData: () => ({
+            sectionId: parseInt(card.dataset.sectionId, 10),
+            sectionSlug: card.dataset.sectionSlug,
+          }),
+          onDragStart: () => {
+            card.classList.add('dragging');
+          },
+          onDrop: () => {
+            card.classList.remove('dragging');
+          },
+        }),
+        dropTargetForElements({
+          element: card,
+          getData: () => ({
+            sectionId: parseInt(card.dataset.sectionId, 10),
+          }),
+          onDragEnter: () => {
+            card.classList.add('drag-over');
+          },
+          onDragLeave: () => {
+            card.classList.remove('drag-over');
+          },
+          onDrop: () => {
+            card.classList.remove('drag-over');
+          },
+        })
+      );
+      cleanupFns.push(cleanup);
+    });
+
+    // Make the container a drop target for reordering
+    const containerCleanup = dropTargetForElements({
+      element: container,
+      onDrop: ({ source, location }) => {
+        const draggedId = source.data.sectionId as number;
+        const target = location.current.dropTargets[0];
+
+        if (!target) return;
+
+        const targetId = target.data.sectionId as number;
+        if (draggedId === targetId) return;
+
+        // Get current order
+        const cards = Array.from(container.querySelectorAll('.section-card')) as SectionElement[];
+        const currentIds = cards.map((c) => parseInt(c.dataset.sectionId, 10));
+
+        const draggedIndex = currentIds.indexOf(draggedId);
+        const targetIndex = currentIds.indexOf(targetId);
+
+        if (draggedIndex === -1 || targetIndex === -1) return;
+
+        // Reorder the array
+        const newOrder = reorder({
+          list: currentIds,
+          startIndex: draggedIndex,
+          finishIndex: targetIndex,
+        });
+
+        // Optimistic UI update
+        updateDOM(newOrder);
+
+        // Persist to server
+        saveOrder(newOrder);
+      },
+    });
+    cleanupFns.push(containerCleanup);
+
+    // Load previews lazily
+    loadPreviews();
+
+    // Viewport controls
+    initViewportControls();
+
+    // Remove section handlers
+    initRemoveHandlers();
+  }
+
+  function updateDOM(newOrder: number[]) {
+    const cards = Array.from(container.querySelectorAll('.section-card')) as SectionElement[];
+    const cardMap = new Map(cards.map((c) => [parseInt(c.dataset.sectionId, 10), c]));
+
+    // Clear container
+    container.innerHTML = '';
+
+    // Re-add in new order
+    newOrder.forEach((id, index) => {
+      const card = cardMap.get(id);
+      if (card) {
+        card.dataset.position = String(index);
+        container.appendChild(card);
+      }
+    });
+  }
+
+  let saveTimeout: number | null = null;
+
+  async function saveOrder(sectionIds: number[]) {
+    // Debounce saves
+    if (saveTimeout) {
+      clearTimeout(saveTimeout);
+    }
+
+    saveTimeout = window.setTimeout(async () => {
+      try {
+        const response = await fetch('/api/projects/sections/reorder', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ projectSlug, sectionIds }),
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+          showToast('Failed to save order', 'error');
+        } else {
+          showToast('Order saved', 'success');
+        }
+      } catch {
+        showToast('Failed to save order', 'error');
+      }
+    }, 500) as unknown as number;
+  }
+
+  function loadPreviews() {
+    const iframes = container.querySelectorAll('.section-preview') as NodeListOf<HTMLIFrameElement>;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target as HTMLIFrameElement;
+            const src = iframe.dataset.src;
+            if (src && !iframe.src) {
+              iframe.src = src;
+              iframe.addEventListener('load', () => {
+                iframe.classList.add('loaded');
+              });
+            }
+            observer.unobserve(iframe);
+          }
+        });
+      },
+      { rootMargin: '100px' }
+    );
+
+    iframes.forEach((iframe) => observer.observe(iframe));
+  }
+
+  function initViewportControls() {
+    const buttons = document.querySelectorAll('.viewport-btn');
+    const iframes = container.querySelectorAll('.section-preview') as NodeListOf<HTMLIFrameElement>;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const viewport = (btn as HTMLElement).dataset.viewport;
+
+        // Update active state
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update iframe sources
+        iframes.forEach((iframe) => {
+          const currentSrc = iframe.src || iframe.dataset.src || '';
+          const url = new URL(currentSrc, window.location.origin);
+          url.searchParams.set('viewport', viewport || 'desktop');
+
+          if (iframe.src) {
+            iframe.src = url.toString();
+          } else {
+            iframe.dataset.src = url.toString();
+          }
+        });
+      });
+    });
+  }
+
+  function initRemoveHandlers() {
+    container.addEventListener('click', async (e) => {
+      const btn = (e.target as HTMLElement).closest('.remove-btn') as HTMLElement;
+      if (!btn) return;
+
+      const sectionId = btn.dataset.sectionId;
+      const projSlug = btn.dataset.projectSlug;
+
+      if (!sectionId || !projSlug) return;
+
+      if (!confirm('Remove this section from the project?')) return;
+
+      try {
+        const response = await fetch(`/api/projects/sections/${sectionId}?project=${projSlug}`, {
+          method: 'DELETE',
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Remove from DOM
+          const card = btn.closest('.section-card');
+          card?.remove();
+
+          // Update section count
+          const countEl = document.querySelector('.section-count');
+          if (countEl) {
+            const remaining = container.querySelectorAll('.section-card').length;
+            countEl.textContent = `${remaining} sections`;
+          }
+
+          showToast('Section removed', 'success');
+        } else {
+          showToast(data.error || 'Failed to remove section', 'error');
+        }
+      } catch {
+        showToast('Failed to remove section', 'error');
+      }
+    });
+  }
+
+  function showToast(message: string, type: 'success' | 'error') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('fade-out');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+</script>
+
+<style>
+  .builder-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .builder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header-info {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .builder-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  .section-count {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .viewport-controls {
+    display: flex;
+    background: #f1f5f9;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+  }
+
+  .viewport-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .viewport-btn svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+  .viewport-btn:hover {
+    color: #334155;
+  }
+
+  .viewport-btn.active {
+    background: white;
+    color: #2563eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .add-section-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .add-section-btn:hover {
+    background: #1d4ed8;
+  }
+
+  .add-section-btn svg {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+
+  .preset-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+
+  .preset-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    white-space: nowrap;
+  }
+
+  .preset-label svg {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    color: #6366f1;
+  }
+
+  .preset-dropdown {
+    flex: 1;
+    min-inline-size: 200px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .preset-dropdown:hover {
+    border-color: #cbd5e1;
+  }
+
+  .preset-dropdown:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  }
+
+  .preset-dropdown:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  .create-preset-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    border-radius: 0.375rem;
+    color: #64748b;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .create-preset-link:hover {
+    background: #e0e7ff;
+    color: #4f46e5;
+  }
+
+  .create-preset-link svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+  .sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-block-size: 200px;
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: #f8fafc;
+    border: 2px dashed #e2e8f0;
+    border-radius: 1rem;
+    text-align: center;
+  }
+
+  .empty-icon {
+    inline-size: 4rem;
+    block-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e7ff;
+    border-radius: 1rem;
+    margin-block-end: 1rem;
+  }
+
+  .empty-icon svg {
+    inline-size: 2rem;
+    block-size: 2rem;
+    color: #6366f1;
+  }
+
+  .empty-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 0.5rem;
+  }
+
+  .empty-description {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0 0 1.5rem;
+    max-inline-size: 300px;
+  }
+
+  .empty-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .empty-action:hover {
+    background: #1d4ed8;
+  }
+
+  .drop-indicator {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    pointer-events: none;
+  }
+
+  .drop-line {
+    block-size: 2px;
+    background: #2563eb;
+    border-radius: 1px;
+  }
+
+  .toast-container {
+    position: fixed;
+    inset-block-end: 1.5rem;
+    inset-inline-end: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+  }
+
+  :global(.toast) {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease;
+  }
+
+  :global(.toast-success) {
+    background: #10b981;
+    color: white;
+  }
+
+  :global(.toast-error) {
+    background: #ef4444;
+    color: white;
+  }
+
+  :global(.toast.fade-out) {
+    animation: fadeOut 0.3s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+  }
+</style>

@@ -1,28 +1,61 @@
 ---
 import Dashboard from '../../../layouts/Dashboard.astro';
-import { listPresets, getPreset } from '../../../lib/presets/apply';
+import { listStaticPresets, getPreset } from '../../../lib/presets/apply';
+import { listCustomPresets } from '../../../lib/presets/custom';
 
-const presetInfos = await listPresets();
-const presets = await Promise.all(
-  presetInfos.map(async (info) => {
-    const full = await getPreset(info.slug);
-    return { ...info, ...full };
+// Get static presets with full data
+const staticPresetInfos = listStaticPresets();
+const staticPresets = await Promise.all(
+  staticPresetInfos.map(async (info) => {
+    const full = getPreset(info.slug);
+    return { ...info, ...full, isCustom: false };
   })
 );
+
+// Get custom presets from D1
+const customPresets = await listCustomPresets(Astro.locals);
+const customPresetsFormatted = customPresets.map((cp) => ({
+  slug: cp.slug,
+  name: cp.name,
+  description: cp.description || '',
+  colors: cp.colors,
+  typography: cp.typography,
+  buttons: cp.buttons,
+  isCustom: true,
+}));
+
+// Combine all presets
+const allPresets = [...staticPresets, ...customPresetsFormatted];
 ---
 
 <Dashboard title="Presets" activeNav="presets">
-  <div class="mb-6">
-    <p class="text-gray-600">Color and typography presets you can apply to your projects.</p>
+  <div class="mb-6 flex items-start justify-between">
+    <div>
+      <p class="text-gray-600">Color and typography presets you can apply to your projects.</p>
+    </div>
+    <a
+      href="/library/presets/new"
+      class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Create Preset
+    </a>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {presets.map((preset) => (
+    {allPresets.map((preset) => (
       <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div
-          class="h-24 flex items-center justify-center"
+          class="h-24 flex items-center justify-center relative"
           style={`background-color: ${preset.colors?.background || '#fff'}`}
         >
+          {preset.isCustom && (
+            <span class="absolute top-2 right-2 px-2 py-0.5 text-xs bg-purple-100 text-purple-700 rounded-full">
+              Custom
+            </span>
+          )}
           <div class="flex gap-2">
             <div
               class="w-8 h-8 rounded-full shadow-sm"

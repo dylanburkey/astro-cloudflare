@@ -3,6 +3,7 @@ import Dashboard from '../../../layouts/Dashboard.astro';
 import { getCollection } from 'astro:content';
 import { getVariantInfo, listVariantsOfSection } from '../../../lib/project/promote-variant';
 import { listProjects } from '../../../lib/project/create';
+import LiquidPreviewFrame from '../../../components/liquid-preview/LiquidPreviewFrame.astro';
 
 const { slug } = Astro.params;
 
@@ -192,14 +193,14 @@ const liquidSchema = generateLiquidSchema(displayData);
       <div class="px-6 py-4 border-b border-gray-200">
         <h2 class="text-lg font-semibold text-gray-900">Preview</h2>
       </div>
-      <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
-        <div class="text-center">
-          <svg class="w-16 h-16 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" />
-          </svg>
-          <p class="text-gray-400">Preview coming soon</p>
-        </div>
-      </div>
+      {slug && (
+        <LiquidPreviewFrame
+          sectionSlug={slug}
+          height="320px"
+          showControls={true}
+          class="border-0 rounded-none"
+        />
+      )}
     </div>
 
     <!-- Settings Panel -->

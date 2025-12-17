@@ -1,0 +1,126 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  value: string;
+  type: 'heading' | 'body';
+}
+
+const { id, name, label, value, type } = Astro.props;
+
+// Available fonts (subset of Shopify's font library)
+const fonts = [
+  { name: 'Inter', value: 'Inter', category: 'sans-serif' },
+  { name: 'Roboto', value: 'Roboto', category: 'sans-serif' },
+  { name: 'Open Sans', value: 'Open Sans', category: 'sans-serif' },
+  { name: 'Lato', value: 'Lato', category: 'sans-serif' },
+  { name: 'Montserrat', value: 'Montserrat', category: 'sans-serif' },
+  { name: 'Poppins', value: 'Poppins', category: 'sans-serif' },
+  { name: 'Source Sans Pro', value: 'Source Sans Pro', category: 'sans-serif' },
+  { name: 'Nunito', value: 'Nunito', category: 'sans-serif' },
+  { name: 'Space Grotesk', value: 'Space Grotesk', category: 'sans-serif' },
+  { name: 'DM Sans', value: 'DM Sans', category: 'sans-serif' },
+  { name: 'Playfair Display', value: 'Playfair Display', category: 'serif' },
+  { name: 'Merriweather', value: 'Merriweather', category: 'serif' },
+  { name: 'Libre Baskerville', value: 'Libre Baskerville', category: 'serif' },
+  { name: 'Lora', value: 'Lora', category: 'serif' },
+  { name: 'PT Serif', value: 'PT Serif', category: 'serif' },
+  { name: 'Roboto Slab', value: 'Roboto Slab', category: 'serif' },
+  { name: 'Cormorant Garamond', value: 'Cormorant Garamond', category: 'serif' },
+  { name: 'IBM Plex Mono', value: 'IBM Plex Mono', category: 'monospace' },
+  { name: 'JetBrains Mono', value: 'JetBrains Mono', category: 'monospace' },
+  { name: 'Fira Code', value: 'Fira Code', category: 'monospace' },
+];
+
+// Group fonts by category
+const groupedFonts = fonts.reduce((acc, font) => {
+  if (!acc[font.category]) acc[font.category] = [];
+  acc[font.category].push(font);
+  return acc;
+}, {} as Record<string, typeof fonts>);
+
+const sampleText = type === 'heading'
+  ? 'The quick brown fox'
+  : 'The quick brown fox jumps over the lazy dog.';
+---
+
+<div class="font-selector-field">
+  <label for={id} class="font-label">{label}</label>
+  <select id={id} name={name} class="font-select">
+    {Object.entries(groupedFonts).map(([category, fonts]) => (
+      <optgroup label={category.charAt(0).toUpperCase() + category.slice(1)}>
+        {fonts.map((font) => (
+          <option value={font.value} selected={value === font.value}>
+            {font.name}
+          </option>
+        ))}
+      </optgroup>
+    ))}
+  </select>
+  <p class="font-preview" data-preview-id={id} style={`font-family: ${value}, system-ui, sans-serif;`}>
+    {sampleText}
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll('.font-selector-field').forEach((field) => {
+    const select = field.querySelector('.font-select') as HTMLSelectElement;
+    const preview = field.querySelector('.font-preview') as HTMLElement;
+
+    if (!select || !preview) return;
+
+    select.addEventListener('change', () => {
+      const fontFamily = select.value;
+      preview.style.fontFamily = `${fontFamily}, system-ui, sans-serif`;
+
+      // Optionally load the font from Google Fonts
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontFamily.replace(/ /g, '+'))}:wght@400;500;600;700&display=swap`;
+      document.head.appendChild(link);
+    });
+  });
+</script>
+
+<style>
+  .font-selector-field {
+    margin-bottom: 1rem;
+  }
+
+  .font-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .font-select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background: white;
+    cursor: pointer;
+  }
+
+  .font-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .font-preview {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 0.375rem;
+    font-size: 1.125rem;
+    color: #1e293b;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+  }
+</style>

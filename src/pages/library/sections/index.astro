@@ -46,10 +46,19 @@ const totalVariants = Object.values(variantsMap).reduce((sum, variants) => sum +
             return (
               <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                 <a href={`/library/sections/${section.data.slug}`} class="block group hover:bg-gray-50 transition-colors">
-                  <div class="h-32 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                    <svg class="w-12 h-12 text-purple-300 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" />
-                    </svg>
+                  <div class="section-thumbnail">
+                    <iframe
+                      class="thumbnail-frame"
+                      data-src={`/api/render/section?section=${section.data.slug}&viewport=mobile`}
+                      loading="lazy"
+                      sandbox="allow-same-origin"
+                      title={`Preview of ${section.data.name}`}
+                    ></iframe>
+                    <div class="thumbnail-loading">
+                      <svg class="loading-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" />
+                      </svg>
+                    </div>
                   </div>
                   <div class="p-4">
                     <div class="flex items-center gap-2 mb-1">
@@ -102,3 +111,78 @@ const totalVariants = Object.values(variantsMap).reduce((sum, variants) => sum +
     ))}
   </div>
 </Dashboard>
+
+<script>
+  // Lazy load thumbnail previews
+  document.addEventListener('DOMContentLoaded', () => {
+    const iframes = document.querySelectorAll('.thumbnail-frame') as NodeListOf<HTMLIFrameElement>;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target as HTMLIFrameElement;
+            const src = iframe.dataset.src;
+            if (src && !iframe.src) {
+              iframe.src = src;
+              iframe.addEventListener('load', () => {
+                iframe.classList.add('loaded');
+              });
+            }
+            observer.unobserve(iframe);
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+
+    iframes.forEach((iframe) => observer.observe(iframe));
+  });
+</script>
+
+<style>
+  .section-thumbnail {
+    position: relative;
+    block-size: 8rem;
+    background: linear-gradient(to bottom right, #f3e8ff, #e0e7ff);
+    overflow: hidden;
+  }
+
+  .thumbnail-frame {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    border: none;
+    pointer-events: none;
+    transform: scale(0.5);
+    transform-origin: top left;
+    inline-size: 200%;
+    block-size: 200%;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .thumbnail-frame.loaded {
+    opacity: 1;
+  }
+
+  .thumbnail-frame.loaded + .thumbnail-loading {
+    opacity: 0;
+  }
+
+  .thumbnail-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+  }
+
+  .loading-icon {
+    inline-size: 3rem;
+    block-size: 3rem;
+    color: #c4b5fd;
+  }
+</style>

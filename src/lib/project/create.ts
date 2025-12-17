@@ -149,6 +149,109 @@ export async function getProject(slug: string, locals: App.Locals): Promise<Proj
   };
 }
 
+export interface ProjectSectionWithId {
+  id: number;
+  sectionSlug: string;
+  position: number;
+}
+
+export async function getProjectSections(slug: string, locals: App.Locals): Promise<ProjectSectionWithId[]> {
+  const db = getDB(locals);
+
+  const project = await db
+    .prepare('SELECT id FROM projects WHERE slug = ?')
+    .bind(slug)
+    .first<{ id: string }>();
+
+  if (!project) return [];
+
+  const sections = await db
+    .prepare('SELECT id, section_slug, position FROM project_sections WHERE project_id = ? ORDER BY position')
+    .bind(project.id)
+    .all<{ id: number; section_slug: string; position: number }>();
+
+  return sections.results.map(s => ({
+    id: s.id,
+    sectionSlug: s.section_slug,
+    position: s.position,
+  }));
+}
+
+export async function reorderProjectSections(
+  slug: string,
+  sectionIds: number[],
+  locals: App.Locals
+): Promise<boolean> {
+  const db = getDB(locals);
+
+  const project = await db
+    .prepare('SELECT id FROM projects WHERE slug = ?')
+    .bind(slug)
+    .first<{ id: string }>();
+
+  if (!project) return false;
+
+  // Update positions for each section
+  const batch = sectionIds.map((id, index) =>
+    db.prepare('UPDATE project_sections SET position = ? WHERE id = ? AND project_id = ?')
+      .bind(index, id, project.id)
+  );
+
+  await db.batch(batch);
+
+  // Update project timestamp
+  await db
+    .prepare('UPDATE projects SET updated_at = ? WHERE id = ?')
+    .bind(now(), project.id)
+    .run();
+
+  return true;
+}
+
+export async function removeProjectSection(
+  slug: string,
+  sectionId: number,
+  locals: App.Locals
+): Promise<boolean> {
+  const db = getDB(locals);
+
+  const project = await db
+    .prepare('SELECT id FROM projects WHERE slug = ?')
+    .bind(slug)
+    .first<{ id: string }>();
+
+  if (!project) return false;
+
+  const result = await db
+    .prepare('DELETE FROM project_sections WHERE id = ? AND project_id = ?')
+    .bind(sectionId, project.id)
+    .run();
+
+  if (result.meta.changes > 0) {
+    // Re-normalize positions
+    const sections = await db
+      .prepare('SELECT id FROM project_sections WHERE project_id = ? ORDER BY position')
+      .bind(project.id)
+      .all<{ id: number }>();
+
+    const updateBatch = sections.results.map((s, index) =>
+      db.prepare('UPDATE project_sections SET position = ? WHERE id = ?')
+        .bind(index, s.id)
+    );
+
+    if (updateBatch.length > 0) {
+      await db.batch(updateBatch);
+    }
+
+    await db
+      .prepare('UPDATE projects SET updated_at = ? WHERE id = ?')
+      .bind(now(), project.id)
+      .run();
+  }
+
+  return result.meta.changes > 0;
+}
+
 export async function deleteProject(slug: string, locals: App.Locals): Promise<boolean> {
   const db = getDB(locals);
 

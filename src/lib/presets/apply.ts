@@ -1,5 +1,7 @@
 import { getDB, now } from '../db';
 import { getProjectFile, updateProjectFile } from '../project/files';
+import { getCustomPreset, listCustomPresets } from './custom';
+import type { CustomPresetData } from '../db/schema';
 
 export interface Preset {
   name: string;
@@ -30,6 +32,7 @@ export interface PresetInfo {
   slug: string;
   name: string;
   description: string;
+  isCustom?: boolean;
 }
 
 // Load presets at build time using Vite's import.meta.glob
@@ -46,17 +49,73 @@ for (const [path, preset] of Object.entries(presetModules)) {
   presetsMap[slug] = preset;
 }
 
-export function listPresets(): PresetInfo[] {
+// List static presets only
+export function listStaticPresets(): PresetInfo[] {
   return Object.entries(presetsMap)
     .map(([slug, preset]) => ({
       slug,
       name: preset.name,
       description: preset.description,
+      isCustom: false,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+// Legacy function name for compatibility
+export function listPresets(): PresetInfo[] {
+  return listStaticPresets();
+}
+
+// List all presets (static + custom from D1)
+export async function listAllPresets(locals: App.Locals): Promise<PresetInfo[]> {
+  const staticPresets = listStaticPresets();
+
+  const customPresets = await listCustomPresets(locals);
+  const customPresetInfos: PresetInfo[] = customPresets.map((cp) => ({
+    slug: `custom:${cp.slug}`,
+    name: cp.name,
+    description: cp.description || '',
+    isCustom: true,
+  }));
+
+  return [...staticPresets, ...customPresetInfos].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+}
+
+// Get a static preset by slug
 export function getPreset(slug: string): Preset | null {
+  return presetsMap[slug] || null;
+}
+
+// Convert custom preset to Preset format
+function customPresetToPreset(custom: CustomPresetData): Preset {
+  return {
+    name: custom.name,
+    description: custom.description || '',
+    colors: custom.colors,
+    typography: custom.typography,
+    buttons: custom.buttons,
+  };
+}
+
+// Get any preset (static or custom) by slug
+// Custom presets use "custom:" prefix
+export async function getAnyPreset(
+  slug: string,
+  locals: App.Locals
+): Promise<Preset | null> {
+  // Check if it's a custom preset
+  if (slug.startsWith('custom:')) {
+    const customSlug = slug.replace('custom:', '');
+    const custom = await getCustomPreset(customSlug, locals);
+    if (custom) {
+      return customPresetToPreset(custom);
+    }
+    return null;
+  }
+
+  // Otherwise check static presets
   return presetsMap[slug] || null;
 }
 
@@ -65,7 +124,8 @@ export async function applyPresetToProject(
   presetSlug: string,
   locals: App.Locals
 ): Promise<boolean> {
-  const preset = getPreset(presetSlug);
+  // Support both static and custom presets
+  const preset = await getAnyPreset(presetSlug, locals);
   if (!preset) {
     throw new Error(`Preset "${presetSlug}" not found`);
   }

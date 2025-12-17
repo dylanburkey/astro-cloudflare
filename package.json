@@ -12,9 +12,12 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
+    "@atlaskit/pragmatic-drag-and-drop": "^1.7.7",
+    "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.1.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.5",
     "fflate": "^0.8.2",
+    "liquidjs": "^10.24.0",
     "tailwindcss": "^4.1.18"
   }
 }
