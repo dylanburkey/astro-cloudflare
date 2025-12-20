@@ -18,6 +18,7 @@ export interface ProjectSectionRow {
   project_id: string;
   section_slug: string;
   position: number;
+  settings: string; // JSON string of section settings
   added_at: string;
 }
 

@@ -1,5 +1,6 @@
 ---
 import SectionCard from './SectionCard.astro';
+import SectionSettingsPanel from './SectionSettingsPanel.astro';
 import type { BuilderSection } from './builder-types';
 
 interface PresetInfo {
@@ -116,6 +117,8 @@ const { projectSlug, projectName, sections, appliedPreset, availablePresets = []
 </div>
 
 <div id="toast-container" class="toast-container"></div>
+
+<SectionSettingsPanel projectSlug={projectSlug} />
 
 <script>
   import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
@@ -266,6 +269,9 @@ const { projectSlug, projectName, sections, appliedPreset, availablePresets = []
 
     // Remove section handlers
     initRemoveHandlers();
+
+    // Settings button handlers
+    initSettingsHandlers();
   }
 
   function updateDOM(newOrder: number[]) {
@@ -406,6 +412,63 @@ const { projectSlug, projectName, sections, appliedPreset, availablePresets = []
         showToast('Failed to remove section', 'error');
       }
     });
+  }
+
+  function initSettingsHandlers() {
+    container.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.settings-btn') as HTMLElement;
+      if (!btn) return;
+
+      const sectionId = parseInt(btn.dataset.sectionId || '', 10);
+      const sectionSlug = btn.dataset.sectionSlug;
+      const sectionName = btn.dataset.sectionName;
+
+      if (!sectionId || !sectionSlug) return;
+
+      // Dispatch custom event to open settings panel
+      document.dispatchEvent(new CustomEvent('open-settings-panel', {
+        detail: {
+          sectionId,
+          sectionSlug,
+          sectionName: sectionName || sectionSlug,
+        }
+      }));
+    });
+
+    // Listen for settings saved to refresh preview
+    document.addEventListener('settings-saved', ((e: CustomEvent) => {
+      const { sectionId } = e.detail;
+
+      // Find the iframe for this section and refresh it
+      const card = container.querySelector(`[data-section-id="${sectionId}"]`);
+      if (card) {
+        const iframe = card.querySelector('.section-preview') as HTMLIFrameElement;
+        if (iframe && iframe.src) {
+          const url = new URL(iframe.src);
+          url.searchParams.delete('settings'); // Remove temp settings after save
+          url.searchParams.set('t', Date.now().toString()); // Cache bust
+          iframe.src = url.toString();
+        }
+      }
+    }) as EventListener);
+
+    // Listen for real-time preview updates while editing settings
+    document.addEventListener('settings-preview-update', ((e: CustomEvent) => {
+      const { sectionId, sectionSlug, settings } = e.detail;
+
+      // Find the iframe for this section and update with new settings
+      const card = container.querySelector(`[data-section-id="${sectionId}"]`);
+      if (card) {
+        const iframe = card.querySelector('.section-preview') as HTMLIFrameElement;
+        if (iframe && iframe.src) {
+          const url = new URL(iframe.src);
+          // Encode settings as URL parameter
+          url.searchParams.set('settings', encodeURIComponent(JSON.stringify(settings)));
+          url.searchParams.set('t', Date.now().toString()); // Cache bust
+          iframe.src = url.toString();
+        }
+      }
+    }) as EventListener);
   }
 
   function showToast(message: string, type: 'success' | 'error') {

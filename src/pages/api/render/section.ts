@@ -76,6 +76,18 @@ export const POST: APIRoute = async ({ request, locals }) => {
 export const GET: APIRoute = async ({ url, locals }) => {
   const sectionSlug = url.searchParams.get('section');
   const presetSlug = url.searchParams.get('preset') ?? undefined;
+  const settingsParam = url.searchParams.get('settings');
+  const viewport = url.searchParams.get('viewport') ?? 'desktop';
+
+  // Parse custom settings from query param if provided
+  let customSettings: Record<string, unknown> | undefined;
+  if (settingsParam) {
+    try {
+      customSettings = JSON.parse(decodeURIComponent(settingsParam));
+    } catch {
+      // Invalid JSON, ignore
+    }
+  }
 
   if (!sectionSlug) {
     return new Response(
@@ -91,6 +103,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
     const result = await renderSection({
       sectionSlug,
       presetSlug,
+      customSettings,
       locals,
     });
 
